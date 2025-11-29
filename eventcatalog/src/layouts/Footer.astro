@@ -4,10 +4,10 @@ import { showEventCatalogBranding } from '@utils/feature';
 const { className } = Astro.props;
 ---
 
-<footer class={`relative py-4 space-y-8 border-t border-gray-300 ${className}`}>
+<footer class={`relative py-4 space-y-8 border-t border-gray-300 dark:border-gray-700 ${className}`}>
   {
     showEventCatalogBranding() && (
-      <div class="flex justify-between items-center py-8 text-gray-500 text-sm font-light">
+      <div class="flex justify-between items-center py-8 text-gray-500 dark:text-gray-400 text-sm font-light">
         <div class="flex space-x-5">
           <a href="https://github.com/event-catalog/eventcatalog" target="_blank">
             <svg
@@ -32,7 +32,7 @@ const { className } = Astro.props;
         </div>
         <a
           target="_blank"
-          class="hover:text-primary hover:underline text-gray-400 font-light not-prose"
+          class="hover:text-primary hover:underline text-gray-400 dark:text-gray-500 dark:hover:text-primary font-light not-prose"
           href="https://eventcatalog.dev"
         >
           Powered by EventCatalog

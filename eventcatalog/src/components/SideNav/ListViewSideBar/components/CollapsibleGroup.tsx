@@ -17,10 +17,10 @@ const CollapsibleGroup: React.FC<CollapsibleGroupProps> = ({ isCollapsed, onTogg
           e.stopPropagation();
           onToggle();
         }}
-        className="p-1 hover:bg-gray-100 rounded-md"
+        className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
       >
         <div className={`transition-transform duration-150 ${isCollapsed ? '' : 'rotate-180'}`}>
-          <ChevronDownIcon className="h-3 w-3 text-gray-500" />
+          <ChevronDownIcon className="h-3 w-3 text-gray-500 dark:text-gray-400" />
         </div>
       </button>
       {typeof title === 'string' ? (

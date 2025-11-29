@@ -17,7 +17,7 @@ const HighlightedText = React.memo(({ text, searchTerm }: { text: string; search
     <>
       {parts.map((part, index) =>
         regex.test(part) ? (
-          <span key={index} className="bg-yellow-200 text-gray-900 font-semibold">
+          <span key={index} className="bg-yellow-200 dark:bg-yellow-500 text-gray-900 dark:text-gray-100 font-semibold">
             {part}
           </span>
         ) : (
@@ -49,20 +49,22 @@ const getMessageColorByLabelOrCollection = (collection: string, badge?: string) 
 };
 
 const MessageList: React.FC<MessageListProps> = ({ messages, decodedCurrentPath, searchTerm }) => (
-  <ul className="space-y-0.5 border-l border-gray-200/80 ml-[9px] pl-4">
+  <ul className="space-y-0.5 border-l border-gray-200/80 dark:border-gray-700/80 ml-[9px] pl-4">
     {messages.map((message: any) => (
       <li key={message.id} data-active={decodedCurrentPath === message.href}>
         <a
           href={message.href}
           data-active={decodedCurrentPath === message.href}
-          className={`flex items-center justify-between px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md ${
-            decodedCurrentPath.includes(message.href) ? 'bg-purple-100 ' : 'hover:bg-purple-100'
+          className={`flex items-center justify-between px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md ${
+            decodedCurrentPath.includes(message.href)
+              ? 'bg-purple-100 dark:bg-purple-900/50'
+              : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
           }`}
           title={message.data?.sidebar?.label || message.data.name}
         >
           <span className="truncate">
             <HighlightedText text={message.data?.sidebar?.label || message.data.name} searchTerm={searchTerm} />
-            <span className="text-xs text-gray-400">{message.data.draft ? ' (DRAFT)' : ''}</span>
+            <span className="text-xs text-gray-400 dark:text-gray-500">{message.data.draft ? ' (DRAFT)' : ''}</span>
           </span>
           <span
             className={`ml-2 text-[10px]  flex items-center gap-1 font-medium px-2 uppercase py-0.5 rounded ${getMessageColorByLabelOrCollection(message.collection, message.data?.sidebar?.badge)} ${message.data?.sidebar?.backgroundColor}`}

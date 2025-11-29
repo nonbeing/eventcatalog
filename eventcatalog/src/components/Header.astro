@@ -6,6 +6,7 @@ import { showEventCatalogBranding, showCustomBranding } from '@utils/feature';
 import { getSession } from 'auth-astro/server';
 import { isAuthEnabled, isSSR } from '@utils/feature';
 import { EnvironmentDropdown } from './EnvironmentDropdown';
+import DarkModeToggle from './DarkModeToggle.astro';
 
 let session = null;
 if (isAuthEnabled()) {
@@ -23,14 +24,14 @@ const repositoryUrl = catalog?.repositoryUrl || 'https://github.com/event-catalo
 
 <nav
   id="eventcatalog-header"
-  class="fixed top-0 left-0 right-0 h-header bg-white border-b border-gray-100 py-3 font-bold text-xl bg-opacity-20 backdrop-blur-sm z-10"
+  class="fixed top-0 left-0 right-0 h-header bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700 py-3 font-bold text-xl bg-opacity-20 dark:bg-opacity-90 backdrop-blur-sm z-10"
 >
   <div class="px-4 sm:px-4 lg:px-4">
     <div class="flex justify-between items-center">
       <div class="flex-shrink-0 flex items-center w-3/12">
         <a href={buildUrl(catalog.landingPage || '/')} class="flex space-x-2 items-center">
           {logo.src && <img alt={logo.alt} src={buildUrl(logo.src, true)} class="w-8 h-8" />}
-          {logo.text && <span class="hidden sm:inline-block text-[1em]">{logo.text}</span>}
+          {logo.text && <span class="hidden sm:inline-block text-[1em] dark:text-white">{logo.text}</span>}
         </a>
       </div>
 
@@ -46,11 +47,12 @@ const repositoryUrl = catalog?.repositoryUrl || 'https://github.com/event-catalo
               {catalog.environments && catalog.environments.length > 0 && (
                 <EnvironmentDropdown environments={catalog.environments} client:load />
               )}
+              <DarkModeToggle />
               <div class="relative">
                 <button
                   id="profile-menu-button"
                   type="button"
-                  class="flex items-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-full"
+                  class="flex items-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 rounded-full"
                   aria-expanded="false"
                   aria-haspopup="true"
                 >
@@ -58,10 +60,10 @@ const repositoryUrl = catalog?.repositoryUrl || 'https://github.com/event-catalo
                     <img
                       src={session.user.image}
                       alt={session.user?.name || 'User'}
-                      class="h-8 w-8 rounded-full border-2 border-gray-200 hover:border-gray-300 transition-colors"
+                      class="h-8 w-8 rounded-full border-2 border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 transition-colors"
                     />
                   ) : (
-                    <div class="h-8 w-8 rounded-full border-2 border-gray-200 hover:border-gray-300 transition-colors bg-gray-100 flex items-center justify-center text-sm font-medium text-gray-600">
+                    <div class="h-8 w-8 rounded-full border-2 border-gray-200 hover:border-gray-300 dark:border-gray-600 dark:hover:border-gray-500 transition-colors bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-sm font-medium text-gray-600 dark:text-gray-300">
                       {session.user?.name
                         ? session.user.name
                             .split(' ')
@@ -75,15 +77,15 @@ const repositoryUrl = catalog?.repositoryUrl || 'https://github.com/event-catalo
                 </button>
                 <div
                   id="profile-dropdown"
-                  class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-100 overflow-hidden"
+                  class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-100 dark:border-gray-700 overflow-hidden"
                 >
-                  <div class="px-4 py-2 text-sm text-gray-700 border-b border-gray-100">
+                  <div class="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-gray-700">
                     <div class="font-medium">{session.user?.name || 'User'}</div>
-                    {session.user?.email && <div class="text-gray-500">{session.user.email}</div>}
+                    {session.user?.email && <div class="text-gray-500 dark:text-gray-400">{session.user.email}</div>}
                   </div>
                   <button
                     id="signout-btn"
-                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
                     Sign out
                   </button>
@@ -96,6 +98,7 @@ const repositoryUrl = catalog?.repositoryUrl || 'https://github.com/event-catalo
                 {catalog.environments && catalog.environments.length > 0 && (
                   <EnvironmentDropdown environments={catalog.environments} client:load />
                 )}
+                <DarkModeToggle />
                 {isAuthEnabled() && (
                   <button
                     id="okta-signin-btn"
@@ -137,7 +140,7 @@ const repositoryUrl = catalog?.repositoryUrl || 'https://github.com/event-catalo
         <button
           id="menu-toggle"
           type="button"
-          class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
+          class="text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 focus:outline-none focus:text-gray-600 dark:focus:text-gray-300"
           aria-label="Toggle menu"
         >
           <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">

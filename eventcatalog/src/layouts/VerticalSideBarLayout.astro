@@ -199,9 +199,20 @@ const canPageBeEmbedded = process.env.ENABLE_EMBED === 'true';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="">
   <head>
     <SEO title={`EventCatalog | ${title}`} description={description} ogTitle={title} />
+    <script is:inline>
+      // Inline script to prevent flash of incorrect theme
+      (function () {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const shouldBeDark = stored === 'dark' || (stored !== 'light' && prefersDark);
+        if (shouldBeDark) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
     <style is:global>
       .sidebar-transition {
         transition-property: width, transform;
@@ -251,12 +262,12 @@ const canPageBeEmbedded = process.env.ENABLE_EMBED === 'true';
       }
     </style>
   </head>
-  <body>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
     <Header />
     <div class="flex">
       <aside class="flex" id="eventcatalog-vertical-nav">
         <div
-          class="fixed flex flex-col items-center w-16 h-screen py-4 bg-white bg-gradient-to-b from-white to-gray-100 border-r border-gray-200 z-20 shadow-md justify-between"
+          class="fixed flex flex-col items-center w-16 h-screen py-4 bg-white dark:bg-gray-800 bg-gradient-to-b from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 border-r border-gray-200 dark:border-gray-700 z-20 shadow-md justify-between"
         >
           <nav class="flex flex-col h-[calc(100vh-70px)] justify-between">
             <div class="flex flex-col items-center flex-1 space-y-6">
@@ -272,7 +283,7 @@ const canPageBeEmbedded = process.env.ENABLE_EMBED === 'true';
                         class={`p-1.5 inline-block transition-colors duration-200 rounded-lg ${
                           item.current
                             ? 'text-white bg-gradient-to-b from-purple-500 to-purple-700'
-                            : 'hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-700 hover:text-white text-gray-700'
+                            : 'hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-700 hover:text-white text-gray-700 dark:text-gray-300'
                         }`}
                       >
                         <div class="has-tooltip">
@@ -286,7 +297,7 @@ const canPageBeEmbedded = process.env.ENABLE_EMBED === 'true';
                   })
               }
 
-              <hr class="w-8 border-t border-gray-200" />
+              <hr class="w-8 border-t border-gray-200 dark:border-gray-600" />
 
               {
                 studioNavigationItem.length > 0 && (
@@ -294,7 +305,7 @@ const canPageBeEmbedded = process.env.ENABLE_EMBED === 'true';
                     id={studioNavigationItem[0].id}
                     data-role="nav-item"
                     href={studioNavigationItem[0].href}
-                    class={`p-1.5 inline-block pt-1 pb-1 mt-0 mb-0 transition-colors duration-200 rounded-lg relative ${studioNavigationItem[0].current ? 'text-white bg-gradient-to-b from-purple-500 to-purple-700' : 'hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-700 hover:text-white text-gray-700'}`}
+                    class={`p-1.5 inline-block pt-1 pb-1 mt-0 mb-0 transition-colors duration-200 rounded-lg relative ${studioNavigationItem[0].current ? 'text-white bg-gradient-to-b from-purple-500 to-purple-700' : 'hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-700 hover:text-white text-gray-700 dark:text-gray-300'}`}
                   >
                     <div class="has-tooltip">
                       <span class="tooltip rounded shadow-lg p-1 text-xs bg-gradient-to-l from-purple-500 to-purple-700 text-white ml-10">
@@ -306,7 +317,7 @@ const canPageBeEmbedded = process.env.ENABLE_EMBED === 'true';
                 )
               }
 
-              {studioNavigationItem.length > 0 && <hr class="w-8 border-t border-gray-200" />}
+              {studioNavigationItem.length > 0 && <hr class="w-8 border-t border-gray-200 dark:border-gray-600" />}
 
               {
                 premiumFeatures.map((item) => (
@@ -317,7 +328,7 @@ const canPageBeEmbedded = process.env.ENABLE_EMBED === 'true';
                     class={`p-1.5 inline-block transition-colors duration-200 rounded-lg mb-8 relative ${
                       item.current
                         ? 'text-white bg-gradient-to-b from-purple-500 to-purple-700'
-                        : 'hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-700 hover:text-white text-gray-700'
+                        : 'hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-700 hover:text-white text-gray-700 dark:text-gray-300'
                     }`}
                   >
                     <div class="has-tooltip">
@@ -341,7 +352,7 @@ const canPageBeEmbedded = process.env.ENABLE_EMBED === 'true';
                     id="/pro"
                     data-role="nav-item"
                     href={buildUrl('/plans')}
-                    class={`p-1.5 inline-block transition-colors duration-200 rounded-lg ${currentPath.includes('/pro') ? 'text-white bg-gradient-to-b from-purple-500 to-purple-700' : 'bg-gradient-to-r from-purple-100 to-indigo-100 hover:from-purple-500 hover:to-purple-700 hover:text-white text-purple-700'}`}
+                    class={`p-1.5 inline-block transition-colors duration-200 rounded-lg ${currentPath.includes('/pro') ? 'text-white bg-gradient-to-b from-purple-500 to-purple-700' : 'bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900 dark:to-indigo-900 hover:from-purple-500 hover:to-purple-700 hover:text-white text-purple-700 dark:text-purple-300'}`}
                   >
                     <div class="has-tooltip">
                       <span class="tooltip rounded shadow-lg p-1 text-xs bg-gradient-to-l from-purple-500 to-purple-700 text-white ml-10">
@@ -358,7 +369,7 @@ const canPageBeEmbedded = process.env.ENABLE_EMBED === 'true';
 
         <SideNav
           id="sidebar"
-          class={`sidebar-transition h-content  overflow-y-auto bg-white  border-r border-gray-100 w-[22em] ml-16 ${showSideBarOnLoad ? 'block' : 'hidden'}`}
+          class={`sidebar-transition h-content  overflow-y-auto bg-white dark:bg-gray-800  border-r border-gray-100 dark:border-gray-700 w-[22em] ml-16 ${showSideBarOnLoad ? 'block' : 'hidden'}`}
         />
       </aside>
       <main
@@ -373,11 +384,11 @@ const canPageBeEmbedded = process.env.ENABLE_EMBED === 'true';
         <div class="text-white text-center space-y-4">
           <div>
             <h1 class="text-2xl font-bold">EventCatalog Backstage Integration</h1>
-            <p class="text-md text-red-500">Missing license key for backstage integration.</p>
+            <p class="text-md text-red-400">Missing license key for backstage integration.</p>
           </div>
           <div>
-            <p class="text-sm text-gray-500">Please configure the backstage plugin to embed this page into Backstage.</p>
-            <a href="https://www.eventcatalog.dev/integrations/backstage" class="text-blue-500 text-xs"
+            <p class="text-sm text-gray-400">Please configure the backstage plugin to embed this page into Backstage.</p>
+            <a href="https://www.eventcatalog.dev/integrations/backstage" class="text-blue-400 text-xs"
               >Configure backstage plugin &rarr;</a
             >
           </div>

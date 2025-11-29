@@ -19,7 +19,7 @@ const HighlightedText = React.memo(({ text, searchTerm }: { text: string; search
     <>
       {parts.map((part, index) =>
         regex.test(part) ? (
-          <span key={index} className="bg-yellow-200 text-gray-900 font-semibold">
+          <span key={index} className="bg-yellow-200 dark:bg-yellow-500 text-gray-900 dark:text-gray-100 font-semibold">
             {part}
           </span>
         ) : (
@@ -49,8 +49,8 @@ export const getMessageCollectionName = (collection: string, item: any) => {
 
 const NoResultsFound = React.memo(({ searchTerm }: { searchTerm: string }) => (
   <div className="px-4 py-6 text-center">
-    <div className="text-gray-400 text-sm mb-2">No results found for "{searchTerm}"</div>
-    <div className="text-gray-400 text-xs">
+    <div className="text-gray-400 dark:text-gray-500 text-sm mb-2">No results found for "{searchTerm}"</div>
+    <div className="text-gray-400 dark:text-gray-500 text-xs">
       Try:
       <ul className="mt-2 space-y-1 text-left list-disc pl-4">
         <li>Checking for typos</li>
@@ -100,7 +100,7 @@ const ServiceItem = React.memo(
           >
             <span className="truncate text-xs font-bold">
               <HighlightedText text={item.label} searchTerm={searchTerm} />
-              <span className="text-xs text-gray-400">{item.draft ? ' (DRAFT)' : ''}</span>
+              <span className="text-xs text-gray-400 dark:text-gray-500">{item.draft ? ' (DRAFT)' : ''}</span>
             </span>
             <span
               style={{
@@ -114,12 +114,14 @@ const ServiceItem = React.memo(
           </button>
         }
       >
-        <div className="space-y-0.5 border-gray-200/80 border-l pl-3 ml-[9px] mt-1">
+        <div className="space-y-0.5 border-gray-200/80 dark:border-gray-700/80 border-l pl-3 ml-[9px] mt-1">
           <a
             href={`${item.href}`}
             data-active={decodedCurrentPath === item.href}
-            className={`flex items-center px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md ${
-              decodedCurrentPath === item.href ? 'bg-purple-100' : 'hover:bg-purple-100'
+            className={`flex items-center px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md ${
+              decodedCurrentPath === item.href
+                ? 'bg-purple-100 dark:bg-purple-900/50'
+                : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
             }`}
           >
             <span className="truncate">Overview</span>
@@ -128,8 +130,10 @@ const ServiceItem = React.memo(
             <a
               href={buildUrl(`/${item.href}/data`)}
               data-active={decodedCurrentPath === `${item.href}/data`}
-              className={`flex items-center px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md ${
-                decodedCurrentPath === `${item.href}/data` ? 'bg-purple-100 ' : 'hover:bg-purple-100'
+              className={`flex items-center px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md ${
+                decodedCurrentPath === `${item.href}/data`
+                  ? 'bg-purple-100 dark:bg-purple-900/50'
+                  : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
               }`}
             >
               <span className="truncate">Data Diagram</span>
@@ -142,8 +146,10 @@ const ServiceItem = React.memo(
                 serviceId: item.id,
               })}
               data-active={window.location.href.includes(`serviceId=${item.id}`)}
-              className={`flex items-center px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md ${
-                window.location.href.includes(`serviceId=${item.id}`) ? 'bg-purple-100' : 'hover:bg-purple-100'
+              className={`flex items-center px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md ${
+                window.location.href.includes(`serviceId=${item.id}`)
+                  ? 'bg-purple-100 dark:bg-purple-900/50'
+                  : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
               }`}
             >
               <span className="truncate flex items-center gap-1">Architecture</span>
@@ -734,11 +740,11 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
               e.stopPropagation();
               toggleGroupCollapse(item.href);
             }}
-            className="p-1 hover:bg-gray-100 rounded-md"
+            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
             title={item.label}
           >
             <div className={`transition-transform duration-150 ${collapsedGroups[item.href] ? '' : 'rotate-180'}`}>
-              <ChevronDownIcon className="h-3 w-3 text-gray-500" />
+              <ChevronDownIcon className="h-3 w-3 text-gray-500 dark:text-gray-400" />
             </div>
           </button>
           <button
@@ -747,7 +753,9 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
               toggleGroupCollapse(item.href);
             }}
             className={`flex-grow flex items-center justify-between px-2 py-0.5 text-xs font-bold rounded-md ${
-              decodedCurrentPath === item.href ? 'bg-purple-100' : 'hover:bg-purple-100'
+              decodedCurrentPath === item.href
+                ? 'bg-purple-100 dark:bg-purple-900/50'
+                : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
             }`}
             title={item.label}
           >
@@ -786,12 +794,16 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
         <div
           className={`overflow-hidden transition-[height] duration-150 ease-out ${collapsedGroups[item.href] ? 'h-0' : 'h-auto'} ${className}`}
         >
-          <div className={`space-y-0.5 border-gray-200/80 border-l pl-4  mt-1 ${marginLeft ? marginLeft : 'ml-[9px]'}`}>
+          <div
+            className={`space-y-0.5 border-gray-200/80 dark:border-gray-700/80 border-l pl-4  mt-1 ${marginLeft ? marginLeft : 'ml-[9px]'}`}
+          >
             <a
               href={`${item.href}`}
               data-active={decodedCurrentPath === item.href}
-              className={`flex items-center px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md ${
-                decodedCurrentPath === item.href ? 'bg-purple-100 ' : 'hover:bg-purple-100'
+              className={`flex items-center px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md ${
+                decodedCurrentPath === item.href
+                  ? 'bg-purple-100 dark:bg-purple-900/50'
+                  : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
               }`}
               title={`${item.label} - Overview`}
             >
@@ -802,8 +814,10 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
               <a
                 href={buildUrl(`/${item.href}/entity-map`)}
                 data-active={decodedCurrentPath === `${item.href}/entity-map`}
-                className={`flex items-center px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md ${
-                  decodedCurrentPath === `${item.href}/entity-map` ? 'bg-purple-100 ' : 'hover:bg-purple-100'
+                className={`flex items-center px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md ${
+                  decodedCurrentPath === `${item.href}/entity-map`
+                    ? 'bg-purple-100 dark:bg-purple-900/50'
+                    : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
                 }`}
               >
                 <span className="truncate">Entity Map</span>
@@ -817,8 +831,10 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
                   domainName: item.name,
                 })}
                 data-active={window.location.href.includes(`domainId=${item.id}`)}
-                className={`flex items-center px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md ${
-                  window.location.href.includes(`domainId=${item.id}`) ? 'bg-purple-100 ' : 'hover:bg-purple-100'
+                className={`flex items-center px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md ${
+                  window.location.href.includes(`domainId=${item.id}`)
+                    ? 'bg-purple-100 dark:bg-purple-900/50'
+                    : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
                 }`}
               >
                 <span className="truncate">Architecture</span>
@@ -828,8 +844,10 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
               <a
                 href={buildUrl(`/docs/domains/${item.id}/language`)}
                 data-active={decodedCurrentPath.includes(`/docs/domains/${item.id}/language`)}
-                className={`flex items-center px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md ${
-                  decodedCurrentPath.includes(`/docs/domains/${item.id}/language`) ? 'bg-purple-100 ' : 'hover:bg-purple-100'
+                className={`flex items-center px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md ${
+                  decodedCurrentPath.includes(`/docs/domains/${item.id}/language`)
+                    ? 'bg-purple-100 dark:bg-purple-900/50'
+                    : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
                 }`}
               >
                 <span className="truncate">Ubiquitous Language</span>
@@ -905,10 +923,12 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
     !filteredData.messagesNotInService?.length;
 
   return (
-    <nav ref={navRef} className="space-y-4 text-gray-800 px-3 py-4 overflow-auto h-full">
+    <nav ref={navRef} className="space-y-4 text-gray-800 dark:text-gray-200 px-3 py-4 overflow-auto h-full">
       <div
         className={`flex gap-2 transition-all duration-200 ${
-          isSearchPinned ? 'sticky -top-5 z-10 bg-white shadow-md -mx-3 px-3 py-2 border-b border-gray-200' : ''
+          isSearchPinned
+            ? 'sticky -top-5 z-10 bg-white dark:bg-gray-800 shadow-md -mx-3 px-3 py-2 border-b border-gray-200 dark:border-gray-700'
+            : ''
         }`}
       >
         <input
@@ -916,30 +936,30 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Quick search..."
-          className="flex-1 p-2 text-sm rounded-md border border-gray-200 h-[30px]"
+          className="flex-1 p-2 text-sm rounded-md border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:placeholder-gray-400 h-[30px]"
         />
         <div className="flex gap-1">
           <button
             onClick={toggleExpandCollapse}
             title={isExpanded ? 'Collapse All' : 'Expand All'}
-            className="px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 h-[30px] flex items-center justify-center"
+            className="px-2 py-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md border border-gray-200 dark:border-gray-600 h-[30px] flex items-center justify-center"
           >
             {isExpanded ? (
-              <ChevronDoubleUpIcon className="h-4 w-4 text-gray-600" />
+              <ChevronDoubleUpIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
             ) : (
-              <ChevronDoubleDownIcon className="h-4 w-4 text-gray-600" />
+              <ChevronDoubleDownIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
             )}
           </button>
           <button
             onClick={hideSidebar}
             title="Hide Sidebar"
-            className="px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 h-[30px] flex items-center justify-center"
+            className="px-2 py-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md border border-gray-200 dark:border-gray-600 h-[30px] flex items-center justify-center"
           >
-            <PanelLeft className="h-4 w-4 text-gray-600" />
+            <PanelLeft className="h-4 w-4 text-gray-600 dark:text-gray-400" />
           </button>
         </div>
       </div>
-      <div className="space-y-2 divide-y divide-gray-200/80">
+      <div className="space-y-2 divide-y divide-gray-200/80 dark:divide-gray-700/80">
         {hasNoResults ? (
           <NoResultsFound searchTerm={debouncedSearchTerm} />
         ) : (
@@ -954,12 +974,16 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
                         href={item.href}
                         data-active={decodedCurrentPath === item.href}
                         className={`flex items-center justify-between px-2 py-0.5 text-xs font-bold rounded-md ${
-                          decodedCurrentPath === item.href ? 'bg-purple-100 text-purple-900' : 'hover:bg-purple-100'
+                          decodedCurrentPath === item.href
+                            ? 'bg-purple-100 dark:bg-purple-900/50 text-purple-900 dark:text-purple-200'
+                            : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
                         }`}
                       >
                         <span className="truncate flex flex-col items-start">
                           <HighlightedText text={item.label} searchTerm={debouncedSearchTerm} />
-                          <span className="text-[10px] text-gray-500 font-light">Explore integrations between domains</span>
+                          <span className="text-[10px] text-gray-500 dark:text-gray-400 font-light">
+                            Explore integrations between domains
+                          </span>
                         </span>
                         <span className="text-blue-600 ml-2 text-[10px] font-medium bg-blue-50 px-2 py-0.5 rounded">DOMAINS</span>
                       </a>
@@ -983,7 +1007,7 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
 
                         {/* Render nested subdomains */}
                         {subdomains.length > 0 && !collapsedGroups[parentDomain.href] && (
-                          <div className="space-y-0.5 border-gray-200/80 border-l pl-4 ml-[9px] mt-2">
+                          <div className="space-y-0.5 border-gray-200/80 dark:border-gray-700/80 border-l pl-4 ml-[9px] mt-2">
                             <CollapsibleGroup
                               isCollapsed={collapsedGroups[`${parentDomain.href}-subdomains`]}
                               onToggle={() => toggleGroupCollapse(`${parentDomain.href}-subdomains`)}
@@ -1042,7 +1066,7 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
                     </button>
                   }
                 >
-                  <div className="space-y-4 border-gray-200/80 border-l pl-3 ml-[9px] mt-3">
+                  <div className="space-y-4 border-gray-200/80 dark:border-gray-700/80 border-l pl-3 ml-[9px] mt-3">
                     {filteredData['services'].map((item: any) => {
                       // Ensure service is collapsed by default if not in collapsedGroups
                       if (collapsedGroups[item.href] === undefined) {
@@ -1085,14 +1109,16 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
                     </button>
                   }
                 >
-                  <div className="space-y-2 border-gray-200/80 border-l pl-3 ml-[9px] mt-3">
+                  <div className="space-y-2 border-gray-200/80 dark:border-gray-700/80 border-l pl-3 ml-[9px] mt-3">
                     {filteredData['flows'].map((item: any) => (
                       <div key={item.href} data-active={decodedCurrentPath === item.href}>
                         <a
                           href={item.href}
                           data-active={decodedCurrentPath === item.href}
                           className={`flex items-center justify-between px-2 py-0.5 text-xs font-thin rounded-md ${
-                            decodedCurrentPath === item.href ? 'bg-purple-100 text-purple-900' : 'hover:bg-purple-100'
+                            decodedCurrentPath === item.href
+                              ? 'bg-purple-100 dark:bg-purple-900/50 text-purple-900 dark:text-purple-200'
+                              : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
                           }`}
                           title={item.label}
                         >
@@ -1129,14 +1155,16 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
                     </button>
                   }
                 >
-                  <div className="space-y-2 border-gray-200/80 border-l pl-3 ml-[9px] mt-3">
+                  <div className="space-y-2 border-gray-200/80 dark:border-gray-700/80 border-l pl-3 ml-[9px] mt-3">
                     {filteredData['containers'].map((item: any) => (
                       <div key={item.href} data-active={decodedCurrentPath === item.href}>
                         <a
                           href={item.href}
                           data-active={decodedCurrentPath === item.href}
                           className={`flex items-center justify-between px-2 py-0.5 text-xs font-thin rounded-md ${
-                            decodedCurrentPath === item.href ? 'bg-purple-100 text-purple-900' : 'hover:bg-purple-100'
+                            decodedCurrentPath === item.href
+                              ? 'bg-purple-100 dark:bg-purple-900/50 text-purple-900 dark:text-purple-200'
+                              : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
                           }`}
                           title={item.label}
                         >
@@ -1172,14 +1200,16 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
                     </button>
                   }
                 >
-                  <div className="space-y-2 border-gray-200/80 border-l pl-3 ml-[9px] mt-3">
+                  <div className="space-y-2 border-gray-200/80 dark:border-gray-700/80 border-l pl-3 ml-[9px] mt-3">
                     {filteredData['designs'].map((item: any) => (
                       <div key={item.href} data-active={decodedCurrentPath === item.href}>
                         <a
                           href={item.href}
                           data-active={decodedCurrentPath === item.href}
                           className={`flex items-center justify-between px-2 py-0.5 text-xs font-thin rounded-md ${
-                            decodedCurrentPath === item.href ? 'bg-purple-100 text-purple-900' : 'hover:bg-purple-100'
+                            decodedCurrentPath === item.href
+                              ? 'bg-purple-100 dark:bg-purple-900/50 text-purple-900 dark:text-purple-200'
+                              : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
                           }`}
                           title={item.label}
                         >
@@ -1214,14 +1244,16 @@ const ListViewSideBar: React.FC<ListViewSideBarProps> = ({ resources, currentPat
                     </button>
                   }
                 >
-                  <div className="space-y-2 border-gray-200/80 border-l pl-3 ml-[9px] mt-3">
+                  <div className="space-y-2 border-gray-200/80 dark:border-gray-700/80 border-l pl-3 ml-[9px] mt-3">
                     {filteredData['messagesNotInService'].map((item: any) => (
                       <div key={item.href} data-active={decodedCurrentPath === item.href}>
                         <a
                           href={item.href}
                           data-active={decodedCurrentPath === item.href}
                           className={`flex items-center justify-between px-2 py-0.5 text-xs font-thin rounded-md ${
-                            decodedCurrentPath === item.href ? 'bg-purple-100 text-purple-900' : 'hover:bg-purple-100'
+                            decodedCurrentPath === item.href
+                              ? 'bg-purple-100 dark:bg-purple-900/50 text-purple-900 dark:text-purple-200'
+                              : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
                           }`}
                           title={item.label}
                         >
