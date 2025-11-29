@@ -121,58 +121,65 @@ const topTiles = [
 ---
 
 <VerticalSideBarLayout title="EventCatalog">
-  <body class="min-h-screen bg-gray-50 font-inter">
+  <body class="min-h-screen bg-gray-50 dark:bg-gray-900 font-inter">
     <main class="container px-8 lg:px-8 mx-auto py-8 max-w-[80em]">
       <div class="mb-12">
-        <h1 class="text-4xl font-semibold mb-4 text-gray-900 font-inter">
+        <h1 class="text-4xl font-semibold mb-4 text-gray-900 dark:text-white font-inter">
           {config?.organizationName || 'EventCatalog'}
         </h1>
-        <p class="text-base mb-0 text-gray-600 max-w-3xl">
+        <p class="text-base mb-0 text-gray-600 dark:text-gray-400 max-w-3xl">
           {config.tagline || 'Comprehensive event-driven architecture documentation covering events, services, domains.'}
         </p>
       </div>
 
-      <h2 class="text-2xl font-semibold mb-8 text-gray-900">Architecture overview</h2>
+      <h2 class="text-2xl font-semibold mb-8 text-gray-900 dark:text-white">Architecture overview</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
         {
           topTiles.map((tile) => (
             <a
               href={tile.href}
-              class="bg-white p-5 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200"
+              class="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all duration-200"
             >
               <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center gap-3">
                   <div class={`p-1.5 ${tile.bgColor} rounded-lg`}>
                     <tile.icon className={`w-4 h-4 ${tile.textColor}`} />
                   </div>
-                  <h3 class="text-lg font-semibold text-gray-900">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                     {tile.count} {tile.title}
                   </h3>
                 </div>
                 <span class={`text-sm font-medium ${tile.arrowColor}`}>View all →</span>
               </div>
-              <p class="text-sm text-gray-600">{tile.description}</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">{tile.description}</p>
             </a>
           ))
         }
       </div>
 
       <div class="mb-12">
-        <h2 class="text-2xl font-semibold mb-8 text-gray-900">Explore EventCatalog</h2>
+        <h2 class="text-2xl font-semibold mb-8 text-gray-900 dark:text-white">Explore EventCatalog</h2>
         <div class="grid grid-cols-12 gap-4">
           <a
             href={getDefaultUrl('docs', 'domains')}
-            class="col-span-6 row-span-2 group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 overflow-hidden"
+            class="col-span-6 row-span-2 group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
           >
-            <div class="h-24 bg-gradient-to-br from-blue-50 to-blue-100 border-b border-gray-200"></div>
+            <div
+              class="h-24 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 border-b border-gray-200 dark:border-gray-700"
+            >
+            </div>
             <div class="p-4">
               <div class="flex items-center gap-3 mb-3">
-                <div class="p-2 bg-blue-100 rounded-lg group-hover:scale-105 transition-transform">
-                  <BookOpenText className="w-5 h-5 text-blue-600" />
+                <div class="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg group-hover:scale-105 transition-transform">
+                  <BookOpenText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600">Documentation</h3>
+                <h3
+                  class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                >
+                  Documentation
+                </h3>
               </div>
-              <p class="text-sm text-gray-600">
+              <p class="text-sm text-gray-600 dark:text-gray-400">
                 Read documentation for {config.organizationName || 'EventCatalog'} messages, services and domains.
               </p>
             </div>
@@ -180,89 +187,117 @@ const topTiles = [
 
           <a
             href={getDefaultUrl('visualiser', 'domains')}
-            class="col-span-6 row-span-2 group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 overflow-hidden"
+            class="col-span-6 row-span-2 group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
           >
-            <div class="h-24 bg-gradient-to-br from-purple-50 to-purple-100 border-b border-gray-200"></div>
+            <div
+              class="h-24 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 border-b border-gray-200 dark:border-gray-700"
+            >
+            </div>
             <div class="p-4">
               <div class="flex items-center gap-3 mb-3">
-                <div class="p-2 bg-purple-100 rounded-lg group-hover:scale-105 transition-transform">
-                  <Workflow className="w-5 h-5 text-purple-600" />
+                <div class="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg group-hover:scale-105 transition-transform">
+                  <Workflow className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                 </div>
-                <h3 class="text-base font-semibold text-gray-900 group-hover:text-purple-600">Visualizer</h3>
+                <h3
+                  class="text-base font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400"
+                >
+                  Visualizer
+                </h3>
               </div>
-              <p class="text-sm text-gray-600">Explore interactive visualizations of your architecture.</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Explore interactive visualizations of your architecture.</p>
             </div>
           </a>
 
           <a
             href={buildUrl('/discover/events')}
-            class="col-span-4 row-span-2 group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 overflow-hidden"
+            class="col-span-4 row-span-2 group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
           >
-            <div class="h-24 bg-gradient-to-br from-teal-50 to-teal-100 border-b border-gray-200"></div>
+            <div
+              class="h-24 bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900 dark:to-teal-800 border-b border-gray-200 dark:border-gray-700"
+            >
+            </div>
             <div class="p-4">
               <div class="flex items-center gap-3 mb-3">
-                <div class="p-2 bg-teal-100 rounded-lg group-hover:scale-105 transition-transform">
-                  <TableProperties className="w-5 h-5 text-teal-600" />
+                <div class="p-2 bg-teal-100 dark:bg-teal-900 rounded-lg group-hover:scale-105 transition-transform">
+                  <TableProperties className="w-5 h-5 text-teal-600 dark:text-teal-400" />
                 </div>
-                <h3 class="text-base font-semibold text-gray-900 group-hover:text-teal-600">Explore</h3>
+                <h3
+                  class="text-base font-semibold text-gray-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400"
+                >
+                  Explore
+                </h3>
               </div>
-              <p class="text-sm text-gray-600">Navigate through your events and services</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Navigate through your events and services</p>
             </div>
           </a>
 
           <a
             href={buildUrl('/chat')}
-            class="col-span-4 row-span-2 group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 overflow-hidden"
+            class="col-span-4 row-span-2 group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
           >
-            <div class="h-24 bg-gradient-to-br from-green-50 to-green-100 border-b border-gray-200"></div>
+            <div
+              class="h-24 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 border-b border-gray-200 dark:border-gray-700"
+            >
+            </div>
             <div class="p-4">
               <div class="flex items-center gap-3 mb-3">
-                <div class="p-2 bg-green-100 rounded-lg group-hover:scale-105 transition-transform">
-                  <BotMessageSquare className="w-5 h-5 text-green-600" />
+                <div class="p-2 bg-green-100 dark:bg-green-900 rounded-lg group-hover:scale-105 transition-transform">
+                  <BotMessageSquare className="w-5 h-5 text-green-600 dark:text-green-400" />
                 </div>
-                <h3 class="text-base font-semibold text-gray-900 group-hover:text-green-600">Chat</h3>
+                <h3
+                  class="text-base font-semibold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400"
+                >
+                  Chat
+                </h3>
               </div>
-              <p class="text-sm text-gray-600">Ask questions about your architecture</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Ask questions about your architecture</p>
             </div>
           </a>
 
           <a
             href={buildUrl('/directory/users')}
-            class="col-span-4 row-span-2 group bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 overflow-hidden"
+            class="col-span-4 row-span-2 group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden"
           >
-            <div class="h-24 bg-gradient-to-br from-orange-50 to-orange-100 border-b border-gray-200"></div>
+            <div
+              class="h-24 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 border-b border-gray-200 dark:border-gray-700"
+            >
+            </div>
             <div class="p-4">
               <div class="flex items-center gap-3 mb-3">
-                <div class="p-2 bg-orange-100 rounded-lg group-hover:scale-105 transition-transform">
-                  <BookUser className="w-5 h-5 text-orange-600" />
+                <div class="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg group-hover:scale-105 transition-transform">
+                  <BookUser className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                 </div>
-                <h3 class="text-base font-semibold text-gray-900 group-hover:text-orange-600">Users & Teams</h3>
+                <h3
+                  class="text-base font-semibold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400"
+                >
+                  Users & Teams
+                </h3>
               </div>
-              <p class="text-sm text-gray-600">Discover service and message ownership</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Discover service and message ownership</p>
             </div>
           </a>
         </div>
       </div>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-8 text-gray-900">Getting Started</h2>
+        <h2 class="text-2xl font-semibold mb-8 text-gray-900 dark:text-white">Getting Started</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {
             gettingStartedItems.map((item) => (
-              <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
                 <div class="flex items-center gap-3 mb-4">
-                  <div class={`p-2 bg-${item.iconBg}-100 rounded-lg`}>
-                    <item.icon className={`w-6 h-6 text-${item.iconBg}-600`} />
+                  <div class={`p-2 bg-${item.iconBg}-100 dark:bg-${item.iconBg}-900 rounded-lg`}>
+                    <item.icon className={`w-6 h-6 text-${item.iconBg}-600 dark:text-${item.iconBg}-400`} />
                   </div>
-                  <h3 class="text-lg font-semibold text-gray-900">{item.title}</h3>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
                 </div>
-                <p class="text-gray-600 text-sm mb-4">{item.description}</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">{item.description}</p>
                 <div class="space-y-2">
                   {item.links.map((link) => (
                     <a
                       href={link.href}
                       target="_blank"
-                      class={`block text-sm text-${item.iconBg}-600 hover:text-${item.iconBg}-700`}
+                      class={`block text-sm text-${item.iconBg}-600 dark:text-${item.iconBg}-400 hover:text-${item.iconBg}-700 dark:hover:text-${item.iconBg}-300`}
                     >
                       → {link.text}
                     </a>

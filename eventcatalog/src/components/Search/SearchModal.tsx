@@ -457,16 +457,21 @@ const SearchModal: React.FC = () => {
               <div className="flex items-center justify-center py-10 px-8">
                 <div className="text-left max-w-lg">
                   <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-3">Search Index Not Found</h2>
-                    <p className="text-gray-600 mb-8 leading-relaxed text-sm">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Search Index Not Found</h2>
+                    <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed text-sm">
                       Your EventCatalog needs to be built to generate the search index. This enables fast searching across all
                       your domains, services, events, and documentation.
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-6 mb-6 border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center justify-center">
-                      <svg className="h-5 w-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 mb-6 border border-gray-200 dark:border-gray-700">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center justify-center">
+                      <svg
+                        className="h-5 w-5 text-green-600 dark:text-green-400 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
                       Build Your Catalog
@@ -474,12 +479,14 @@ const SearchModal: React.FC = () => {
                     <div className="bg-gray-900 rounded-lg p-4 mb-4">
                       <code className="text-green-400 font-mono text-sm">npm run build</code>
                     </div>
-                    <p className="text-sm text-gray-600">This will generate your catalog and create the search index</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      This will generate your catalog and create the search index
+                    </p>
                   </div>
 
-                  <div className="flex items-start text-left bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <div className="flex items-start text-left bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
                     <svg
-                      className="h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0"
+                      className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-3 mt-0.5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -492,10 +499,11 @@ const SearchModal: React.FC = () => {
                       />
                     </svg>
                     <div>
-                      <h4 className="font-medium text-blue-900 mb-1">Need to update search results?</h4>
-                      <p className="text-sm text-blue-700">
-                        Run <code className="bg-blue-100 px-1 py-0.5 rounded text-xs font-mono">npm run build</code> again after
-                        making changes to your catalog content.
+                      <h4 className="font-medium text-blue-900 dark:text-blue-200 mb-1">Need to update search results?</h4>
+                      <p className="text-sm text-blue-700 dark:text-blue-300">
+                        Run{' '}
+                        <code className="bg-blue-100 dark:bg-blue-800 px-1 py-0.5 rounded text-xs font-mono">npm run build</code>{' '}
+                        again after making changes to your catalog content.
                       </p>
                     </div>
                   </div>
