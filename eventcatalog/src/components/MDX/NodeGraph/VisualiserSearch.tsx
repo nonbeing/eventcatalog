@@ -214,12 +214,12 @@ const VisualiserSearch = forwardRef<VisualiserSearchRef, VisualiserSearchProps>(
             onChange={handleSearchChange}
             onKeyDown={handleSearchKeyDown}
             onFocus={handleSearchFocus}
-            className="w-full px-4 py-2 pr-10 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-4 py-2 pr-10 bg-white dark:bg-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:placeholder-gray-400"
           />
           {searchQuery && (
             <button
               onClick={clearSearch}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
               aria-label="Clear search"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -229,7 +229,7 @@ const VisualiserSearch = forwardRef<VisualiserSearchRef, VisualiserSearchProps>(
           )}
         </div>
         {showSuggestions && filteredSuggestions.length > 0 && (
-          <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
             {filteredSuggestions.map((node, index) => {
               const nodeName = getNodeDisplayName(node);
               const nodeType = node.type || 'unknown';
@@ -237,11 +237,11 @@ const VisualiserSearch = forwardRef<VisualiserSearchRef, VisualiserSearchProps>(
                 <div
                   key={node.id}
                   onClick={() => handleSuggestionClick(node)}
-                  className={`px-4 py-2 cursor-pointer flex items-center justify-between hover:bg-gray-100 ${
-                    index === selectedSuggestionIndex ? 'bg-purple-50' : ''
+                  className={`px-4 py-2 cursor-pointer flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 ${
+                    index === selectedSuggestionIndex ? 'bg-purple-50 dark:bg-purple-900/30' : ''
                   }`}
                 >
-                  <span className="text-sm font-medium text-gray-900">{nodeName}</span>
+                  <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{nodeName}</span>
                   <span className={`text-xs capitalize px-2 py-1 rounded ${getNodeTypeColorClass(nodeType)}`}>{nodeType}</span>
                 </div>
               );

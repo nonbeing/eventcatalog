@@ -14,8 +14,12 @@ const { data } = props;
 ---
 
 <VerticalSideBarLayout title={`Visualiser | Bounded context map`}>
-  <div class="bg-gray-100/50 m-4">
-    <div class="h-[calc(100vh-130px)] w-full relative border border-gray-200" id={`${data.id}-portal`} transition:animate="fade">
+  <div class="bg-gray-100/50 dark:bg-gray-800/50 m-4">
+    <div
+      class="h-[calc(100vh-130px)] w-full relative border border-gray-200 dark:border-gray-700"
+      id={`${data.id}-portal`}
+      transition:animate="fade"
+    >
     </div>
     <NodeGraph
       id={data.id}

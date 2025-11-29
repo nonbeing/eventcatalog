@@ -28,16 +28,21 @@
   </svg>
 </button>
 
-<script>
-  function initDarkMode() {
-    const toggle = document.getElementById('dark-mode-toggle');
-    const sunIcon = document.getElementById('sun-icon');
-    const moonIcon = document.getElementById('moon-icon');
-    const html = document.documentElement;
+<script is:inline>
+  (function() {
+    // Prevent multiple initializations of event listeners
+    if (window.__darkModeInitialized) {
+      // Just update UI if already initialized
+      updateDarkModeUI();
+      return;
+    }
+    window.__darkModeInitialized = true;
+
+    var html = document.documentElement;
 
     // Get stored preference or default to system preference
-    function getThemePreference(): 'dark' | 'light' | 'system' {
-      const stored = localStorage.getItem('theme');
+    function getThemePreference() {
+      var stored = localStorage.getItem('theme');
       if (stored === 'dark' || stored === 'light') {
         return stored;
       }
@@ -45,68 +50,69 @@
     }
 
     // Check if system prefers dark mode
-    function systemPrefersDark(): boolean {
+    function systemPrefersDark() {
       return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
 
     // Determine if dark mode should be active
-    function shouldBeDark(): boolean {
-      const preference = getThemePreference();
+    function shouldBeDark() {
+      var preference = getThemePreference();
       if (preference === 'system') {
         return systemPrefersDark();
       }
       return preference === 'dark';
     }
 
-    // Update the UI to reflect current theme
-    function updateUI() {
-      const isDark = shouldBeDark();
+    // Update the UI to reflect current theme - make it global so we can call it on navigation
+    window.updateDarkModeUI = function updateDarkModeUI() {
+      var isDark = shouldBeDark();
+      var sunIcon = document.getElementById('sun-icon');
+      var moonIcon = document.getElementById('moon-icon');
 
       if (isDark) {
         html.classList.add('dark');
-        sunIcon?.classList.remove('hidden');
-        moonIcon?.classList.add('hidden');
+        if (sunIcon) sunIcon.classList.remove('hidden');
+        if (moonIcon) moonIcon.classList.add('hidden');
       } else {
         html.classList.remove('dark');
-        sunIcon?.classList.add('hidden');
-        moonIcon?.classList.remove('hidden');
+        if (sunIcon) sunIcon.classList.add('hidden');
+        if (moonIcon) moonIcon.classList.remove('hidden');
       }
-    }
+    };
 
-    // Toggle theme on button click
+    // Toggle theme
     function toggleTheme() {
-      const currentPreference = getThemePreference();
-      const currentlyDark = shouldBeDark();
-
-      if (currentPreference === 'system') {
-        // If system preference, switch to the opposite of current state
-        localStorage.setItem('theme', currentlyDark ? 'light' : 'dark');
-      } else {
-        // If manual preference, toggle to opposite
-        localStorage.setItem('theme', currentlyDark ? 'light' : 'dark');
-      }
-
-      updateUI();
+      var currentlyDark = shouldBeDark();
+      localStorage.setItem('theme', currentlyDark ? 'light' : 'dark');
+      window.updateDarkModeUI();
     }
 
-    // Listen for system preference changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-      // Only update if user hasn't set a manual preference
-      if (getThemePreference() === 'system') {
-        updateUI();
+    // Use event delegation on document for the toggle button
+    document.addEventListener('click', function(e) {
+      var toggle = e.target.closest('#dark-mode-toggle');
+      if (toggle) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleTheme();
       }
     });
 
-    // Set up click handler
-    toggle?.addEventListener('click', toggleTheme);
+    // Listen for system preference changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+      if (getThemePreference() === 'system') {
+        window.updateDarkModeUI();
+      }
+    });
 
-    // Initialize on load
-    updateUI();
-  }
+    // Initial update
+    window.updateDarkModeUI();
 
-  // Run on initial load
-  initDarkMode();
-
-  // Re-run on Astro page transitions
-  document.addEventListener('astro:page-load', initDarkMode);
+    // Re-run on Astro page transitions
+    document.addEventListener('astro:page-load', function() {
+      window.updateDarkModeUI();
+    });
+    document.addEventListener('astro:after-swap', function() {
+      window.updateDarkModeUI();
+    });
+  })();
 </script>

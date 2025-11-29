@@ -586,15 +586,15 @@ const NodeGraphBuilder = ({
               <div>
                 <button
                   onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-                  className="py-2.5 px-3 bg-white rounded-md shadow-md hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                  className="py-2.5 px-3 bg-white dark:bg-gray-800 rounded-md shadow-md hover:bg-purple-100 dark:hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                   aria-label="Open settings"
                 >
-                  <CogIcon className="h-5 w-5 text-gray-600" />
+                  <CogIcon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
                 </button>
               </div>
 
               {title && (
-                <span className="block shadow-sm bg-white text-xl z-10 text-black px-4 py-1.5 border-gray-200 rounded-md border opacity-80">
+                <span className="block shadow-sm bg-white dark:bg-gray-800 text-xl z-10 text-black dark:text-white px-4 py-1.5 border-gray-200 dark:border-gray-700 rounded-md border opacity-80">
                   {title}
                 </span>
               )}
@@ -614,7 +614,7 @@ const NodeGraphBuilder = ({
                 <select
                   value={links.find((link) => window.location.href.includes(link.url))?.url || links[0].url}
                   onChange={(e) => navigate(e.target.value)}
-                  className="appearance-none pl-7 pr-6 py-0 text-[14px] bg-white rounded-md border border-gray-200 hover:bg-gray-100/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                  className="appearance-none pl-7 pr-6 py-0 text-[14px] bg-white dark:bg-gray-800 dark:text-white rounded-md border border-gray-200 dark:border-gray-700 hover:bg-gray-100/50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                   style={{ minWidth: 120, height: '26px' }}
                 >
                   {links.map((link) => (
@@ -634,12 +634,12 @@ const NodeGraphBuilder = ({
         </Panel>
 
         {isSettingsOpen && (
-          <div className="absolute top-[68px] left-5 w-72 p-4 bg-white rounded-lg shadow-lg z-30 border border-gray-200">
-            <h3 className="text-lg font-semibold mb-4">Visualizer Settings</h3>
+          <div className="absolute top-[68px] left-5 w-72 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg z-30 border border-gray-200 dark:border-gray-700">
+            <h3 className="text-lg font-semibold mb-4 dark:text-white">Visualizer Settings</h3>
             <div className="space-y-4 ">
               <div>
                 <div className="flex items-center justify-between">
-                  <label htmlFor="message-animation-toggle" className="text-sm font-medium text-gray-700">
+                  <label htmlFor="message-animation-toggle" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     Simulate Messages
                   </label>
                   <button
@@ -656,12 +656,12 @@ const NodeGraphBuilder = ({
                     />
                   </button>
                 </div>
-                <p className="text-[10px] text-gray-500">Animate events, queries and commands.</p>
+                <p className="text-[10px] text-gray-500 dark:text-gray-400">Animate events, queries and commands.</p>
               </div>
               {hasChannels && (
                 <div>
                   <div className="flex items-center justify-between">
-                    <label htmlFor="hide-channels-toggle" className="text-sm font-medium text-gray-700">
+                    <label htmlFor="hide-channels-toggle" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                       Hide Channels
                     </label>
                     <button
@@ -678,10 +678,10 @@ const NodeGraphBuilder = ({
                       />
                     </button>
                   </div>
-                  <p className="text-[10px] text-gray-500">Show or hide channels in the visualizer.</p>
+                  <p className="text-[10px] text-gray-500 dark:text-gray-400">Show or hide channels in the visualizer.</p>
                 </div>
               )}
-              <div className="pt-4 border-t border-gray-200 space-y-2">
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
                 <button
                   onClick={openStudioModal}
                   className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-black hover:bg-gray-800 text-white text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors"
@@ -698,7 +698,7 @@ const NodeGraphBuilder = ({
                 </button>
                 <button
                   onClick={handleExportVisual}
-                  className="w-full flex items-center justify-center border border-gray-200 space-x-2 px-4 py-2 bg-white text-gray-800 text-sm font-medium rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                  className="w-full flex items-center justify-center border border-gray-200 dark:border-gray-600 space-x-2 px-4 py-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-white text-sm font-medium rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                 >
                   <DocumentArrowDownIcon className="w-4 h-4" />
                   <span>Export as png</span>
@@ -722,12 +722,12 @@ const NodeGraphBuilder = ({
         )}
         {includeKey && (
           <Panel position="bottom-right">
-            <div className=" bg-white font-light px-4 text-[12px] shadow-md py-1 rounded-md">
-              <ul className="m-0 p-0 ">
+            <div className="bg-white dark:bg-gray-800 font-light px-4 text-[12px] shadow-md py-1 rounded-md">
+              <ul className="m-0 p-0">
                 {Object.entries(legend).map(([key, { count, colorClass, groupId }]) => (
                   <li
                     key={key}
-                    className="flex space-x-2 items-center text-[10px] cursor-pointer hover:text-purple-600 hover:underline"
+                    className="flex space-x-2 items-center text-[10px] cursor-pointer hover:text-purple-600 dark:hover:text-purple-400 hover:underline dark:text-gray-300"
                     onClick={() => handleLegendClick(key, groupId)}
                   >
                     <span className={`w-2 h-2 block ${colorClass}`} />
@@ -835,7 +835,7 @@ const NodeGraph = ({
             <div className="flex justify-between" id="visualiser-footer">
               {footerLabel && (
                 <div className="py-2 w-full text-left ">
-                  <span className=" text-sm no-underline py-2 text-gray-500">{footerLabel}</span>
+                  <span className="text-sm no-underline py-2 text-gray-500 dark:text-gray-400">{footerLabel}</span>
                 </div>
               )}
 
@@ -844,12 +844,12 @@ const NodeGraph = ({
                   {/* <span className="text-sm text-gray-500 italic">Right click a node to access documentation</span> */}
                   <button
                     onClick={openStudioModal}
-                    className=" text-sm underline text-gray-800 hover:text-primary flex items-center space-x-1"
+                    className="text-sm underline text-gray-800 dark:text-gray-200 hover:text-primary flex items-center space-x-1"
                   >
                     <span>Open in EventCatalog Studio</span>
                     <ExternalLink className="w-3 h-3" />
                   </button>
-                  <a className=" text-sm underline text-gray-800 hover:text-primary" href={href}>
+                  <a className="text-sm underline text-gray-800 dark:text-gray-200 hover:text-primary" href={href}>
                     {hrefLabel} &rarr;
                   </a>
                 </div>
