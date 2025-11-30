@@ -30,7 +30,7 @@ export default function SchemaContentViewer({
 }: SchemaContentViewerProps) {
   if (!message.schemaContent) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-500">
+      <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-400">
         <p className="text-sm">No schema content available</p>
       </div>
     );
@@ -47,7 +47,7 @@ export default function SchemaContentViewer({
   }
 
   return (
-    <div className="h-full overflow-auto p-3 relative bg-white border border-gray-200 rounded-lg">
+    <div className="h-full overflow-auto p-3 relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
       <div className="absolute top-5 right-5 z-10 flex items-center gap-2">
         {message.collection === 'services' &&
           (() => {
@@ -67,7 +67,7 @@ export default function SchemaContentViewer({
             return (
               <a
                 href={specUrl}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 rounded-md transition-colors shadow-sm"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-md transition-colors shadow-sm"
                 title="View full specification"
               >
                 <svg
@@ -91,7 +91,7 @@ export default function SchemaContentViewer({
         {onOpenFullscreen && (
           <button
             onClick={onOpenFullscreen}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 rounded-md transition-colors shadow-sm"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-md transition-colors shadow-sm"
             title="Open in fullscreen"
           >
             <ArrowsPointingOutIcon className="h-3.5 w-3.5" />
@@ -100,7 +100,7 @@ export default function SchemaContentViewer({
         )}
         <button
           onClick={onCopy}
-          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 rounded-md transition-colors shadow-sm"
+          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-md transition-colors shadow-sm"
           title="Copy code"
         >
           <ClipboardDocumentIcon className="h-3.5 w-3.5" />
@@ -120,7 +120,7 @@ export default function SchemaContentViewer({
           height: '100%',
           overflow: 'auto',
         }}
-        className="bg-white border border-gray-200 rounded-lg"
+        className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg"
         showLineNumbers={true}
         wrapLines={true}
         wrapLongLines={true}

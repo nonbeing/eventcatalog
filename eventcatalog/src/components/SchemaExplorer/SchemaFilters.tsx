@@ -35,15 +35,15 @@ export default function SchemaFilters({
   const activeFilterCount = [searchQuery, selectedType !== 'all', selectedSchemaType !== 'all'].filter(Boolean).length;
 
   return (
-    <div className="flex-shrink-0 border-b border-gray-200 bg-gray-50">
+    <div className="flex-shrink-0 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
       {/* Filter Header */}
       <button
         onClick={onToggleExpanded}
-        className="w-full flex items-center justify-between p-3 hover:bg-gray-100 transition-colors"
+        className="w-full flex items-center justify-between p-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
       >
         <div className="flex items-center gap-2">
-          <FunnelIcon className="h-4 w-4 text-gray-600" />
-          <span className="text-xs font-semibold text-gray-900">Filters</span>
+          <FunnelIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+          <span className="text-xs font-semibold text-gray-900 dark:text-gray-100">Filters</span>
           {activeFilterCount > 0 && (
             <span className="inline-flex items-center rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-white">
               {activeFilterCount}
@@ -51,9 +51,9 @@ export default function SchemaFilters({
           )}
         </div>
         {filtersExpanded ? (
-          <ChevronUpIcon className="h-4 w-4 text-gray-600" />
+          <ChevronUpIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
         ) : (
-          <ChevronDownIcon className="h-4 w-4 text-gray-600" />
+          <ChevronDownIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
         )}
       </button>
 
@@ -62,12 +62,12 @@ export default function SchemaFilters({
         <div className="p-3 pt-0">
           {/* Search */}
           <div className="mb-3">
-            <label htmlFor="search" className="block text-xs font-medium text-gray-700 mb-1.5">
+            <label htmlFor="search" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">
               Search
             </label>
             <div className="relative">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
-                <MagnifyingGlassIcon className="h-4 w-4 text-gray-400" />
+                <MagnifyingGlassIcon className="h-4 w-4 text-gray-400 dark:text-gray-500" />
               </div>
               <input
                 ref={searchInputRef}
@@ -76,11 +76,11 @@ export default function SchemaFilters({
                 placeholder="Search schemas..."
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary text-xs pl-8 pr-8 py-1.5 border"
+                className="w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:border-primary focus:ring-primary text-xs pl-8 pr-8 py-1.5 border"
               />
               {searchQuery && (
                 <button onClick={() => onSearchChange('')} className="absolute inset-y-0 right-0 flex items-center pr-2.5">
-                  <XMarkIcon className="h-4 w-4 text-gray-400 hover:text-gray-600" />
+                  <XMarkIcon className="h-4 w-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" />
                 </button>
               )}
             </div>
@@ -88,14 +88,14 @@ export default function SchemaFilters({
 
           {/* Message Type Filter */}
           <div className="mb-3">
-            <label htmlFor="messageType" className="block text-xs font-medium text-gray-700 mb-1.5">
+            <label htmlFor="messageType" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">
               Message Type
             </label>
             <select
               id="messageType"
               value={selectedType}
               onChange={(e) => onTypeChange(e.target.value as typeof selectedType)}
-              className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary text-xs px-2.5 py-1.5 border"
+              className="w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm focus:border-primary focus:ring-primary text-xs px-2.5 py-1.5 border"
             >
               <option value="all">All ({latestMessages.length})</option>
               <option value="events">Events ({latestMessages.filter((m) => m.collection === 'events').length})</option>
@@ -107,14 +107,14 @@ export default function SchemaFilters({
 
           {/* Schema Type Filter */}
           <div className="mb-3">
-            <label htmlFor="schemaType" className="block text-xs font-medium text-gray-700 mb-1.5">
+            <label htmlFor="schemaType" className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1.5">
               Schema Format
             </label>
             <select
               id="schemaType"
               value={selectedSchemaType}
               onChange={(e) => onSchemaTypeChange(e.target.value)}
-              className="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary text-xs px-2.5 py-1.5 border"
+              className="w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm focus:border-primary focus:ring-primary text-xs px-2.5 py-1.5 border"
             >
               <option value="all">All Formats</option>
               {schemaTypes.map((type) => (
@@ -127,10 +127,10 @@ export default function SchemaFilters({
 
           {/* Active filters */}
           {activeFilterCount > 0 && (
-            <div className="pt-2 border-t border-gray-200">
+            <div className="pt-2 border-t border-gray-200 dark:border-gray-600">
               <div className="flex flex-wrap items-center gap-1.5">
                 {searchQuery && (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 text-blue-800 rounded">
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded">
                     {searchQuery.substring(0, 15)}
                     {searchQuery.length > 15 ? '...' : ''}
                     <button onClick={() => onSearchChange('')}>
@@ -139,7 +139,7 @@ export default function SchemaFilters({
                   </span>
                 )}
                 {selectedType !== 'all' && (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 text-blue-800 rounded">
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded">
                     {selectedType}
                     <button onClick={() => onTypeChange('all')}>
                       <XMarkIcon className="h-3 w-3" />
@@ -147,7 +147,7 @@ export default function SchemaFilters({
                   </span>
                 )}
                 {selectedSchemaType !== 'all' && (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 text-blue-800 rounded">
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded">
                     {getSchemaTypeLabel(selectedSchemaType)}
                     <button onClick={() => onSchemaTypeChange('all')}>
                       <XMarkIcon className="h-3 w-3" />
@@ -160,7 +160,7 @@ export default function SchemaFilters({
                     onTypeChange('all');
                     onSchemaTypeChange('all');
                   }}
-                  className="text-xs text-gray-600 hover:text-gray-900 underline"
+                  className="text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 underline"
                 >
                   Clear
                 </button>

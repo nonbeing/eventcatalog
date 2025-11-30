@@ -19,22 +19,22 @@ export default function SchemaListItem({ message, isSelected, versions, onClick,
     <button
       ref={itemRef}
       onClick={onClick}
-      className={`w-full text-left p-4 hover:bg-gray-50 transition-colors ${
-        isSelected ? `bg-${color}-50 border-l-4 border-${color}-500` : 'border-l-4 border-transparent'
+      className={`w-full text-left p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
+        isSelected ? `bg-${color}-50 dark:bg-${color}-900/30 border-l-4 border-${color}-500` : 'border-l-4 border-transparent'
       }`}
     >
       <div className="flex items-start gap-3">
-        <Icon className={`h-5 w-5 mt-0.5 flex-shrink-0 ${isSelected ? `text-${color}-600` : `text-${color}-500`}`} />
+        <Icon className={`h-5 w-5 mt-0.5 flex-shrink-0 ${isSelected ? `text-${color}-600 dark:text-${color}-400` : `text-${color}-500`}`} />
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2 mb-1.5">
             <div className="flex items-center gap-2 min-w-0">
-              <h3 className={`text-sm font-semibold truncate ${isSelected ? `text-${color}-900` : 'text-gray-900'}`}>
+              <h3 className={`text-sm font-semibold truncate ${isSelected ? `text-${color}-900 dark:text-${color}-100` : 'text-gray-900 dark:text-gray-100'}`}>
                 {message.data.name}
               </h3>
-              <span className="text-xs text-gray-500 flex-shrink-0">v{message.data.version}</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 flex-shrink-0">v{message.data.version}</span>
             </div>
             <div className="flex items-center gap-1 flex-shrink-0">
-              <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-1.5 py-0.5 text-xs font-medium text-gray-800">
+              <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200">
                 {(() => {
                   const ext = message.schemaExtension?.toLowerCase();
                   if (
@@ -59,13 +59,13 @@ export default function SchemaListItem({ message, isSelected, versions, onClick,
                 })()}
               </span>
               {hasMultipleVersions && (
-                <span className="inline-flex items-center rounded-full bg-blue-100 px-1 py-0.5 text-xs font-medium text-blue-700">
+                <span className="inline-flex items-center rounded-full bg-blue-100 dark:bg-blue-900 px-1 py-0.5 text-xs font-medium text-blue-700 dark:text-blue-300">
                   {versions.length} versions
                 </span>
               )}
             </div>
           </div>
-          {message.data.summary && <p className="text-xs text-gray-600 line-clamp-2">{message.data.summary}</p>}
+          {message.data.summary && <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">{message.data.summary}</p>}
         </div>
       </div>
     </button>

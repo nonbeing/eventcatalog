@@ -37,7 +37,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
             href={buildUrl(`/docs/${messageRaw.collection}/${messageRaw.data.id}/${messageRaw.data.version}`)}
             className={`group-hover:text-${color}-500 flex space-x-1 items-center`}
           >
-            <div className={`flex items-center border border-gray-300 shadow-sm rounded-md group-hover:border-${color}-400`}>
+            <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md group-hover:border-${color}-400`}>
               <span className="flex items-center">
                 <span className={`bg-${color}-500 group-hover:bg-${color}-600 h-full rounded-tl rounded-bl p-1`}>
                   <Icon className="h-4 w-4 text-white" />
@@ -82,7 +82,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
     cell: (info) => {
       const producers = info.getValue();
       if (producers?.length === 0 || !producers)
-        return <div className="font-light text-sm text-gray-400/60 text-left italic">No producers documented</div>;
+        return <div className="font-light text-sm text-gray-500 dark:text-gray-400 text-left italic">No producers documented</div>;
       return (
         <ul className="">
           {producers.map((producer, index) => {
@@ -92,7 +92,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                   href={buildUrl(`/docs/${producer.collection}/${producer.data.id}/${producer.data.version}`)}
                   className="group-hover:text-primary flex space-x-1 items-center "
                 >
-                  <div className="flex items-center border border-gray-300 shadow-sm rounded-md">
+                  <div className="flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md">
                     <span className="flex items-center">
                       <span className="bg-pink-500 h-full rounded-tl rounded-bl p-1">
                         <ServerIcon className="h-4 w-4 text-white" />
@@ -122,7 +122,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
     cell: (info) => {
       const consumers = info.getValue();
       if (consumers?.length === 0 || !consumers)
-        return <div className="font-light text-sm text-gray-400/80 text-left italic">No consumers documented</div>;
+        return <div className="font-light text-sm text-gray-500 dark:text-gray-400 text-left italic">No consumers documented</div>;
 
       return (
         <ul>
@@ -133,7 +133,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                   href={buildUrl(`/docs/${consumer.collection}/${consumer.data.id}/${consumer.data.version}`)}
                   className="group-hover:text-primary flex space-x-1 items-center "
                 >
-                  <div className="flex items-center border border-gray-300 shadow-sm rounded-md">
+                  <div className="flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md">
                     <span className="flex items-center">
                       <span className="bg-pink-500 h-full rounded-tl rounded-bl p-1">
                         <ServerIcon className="h-4 w-4 text-white" />

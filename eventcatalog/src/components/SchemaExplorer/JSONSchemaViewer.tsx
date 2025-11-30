@@ -514,7 +514,7 @@ export default function JSONSchemaViewer({
 
   if (!schema) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-500 p-8">
+      <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-400 p-8">
         <p className="text-sm">Unable to parse JSON schema</p>
       </div>
     );
@@ -534,12 +534,12 @@ export default function JSONSchemaViewer({
   return (
     <div
       id={id}
-      className={`${heightClass} ${overflowClass} flex flex-col bg-white border border-gray-100 rounded-md shadow-sm`}
+      className={`${heightClass} ${overflowClass} flex flex-col bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-md shadow-sm`}
       style={containerStyle}
     >
       {/* Toolbar */}
       {searchBool && (
-        <div className="flex-shrink-0 bg-white pt-4 px-4 mb-4 pb-3 border-b border-gray-100 shadow-sm">
+        <div className="flex-shrink-0 bg-white dark:bg-gray-800 pt-4 px-4 mb-4 pb-3 border-b border-gray-100 dark:border-gray-700 shadow-sm">
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1 relative">
               <input
@@ -548,7 +548,7 @@ export default function JSONSchemaViewer({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search properties..."
-                className="w-full px-3 py-1.5 pr-20 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-1.5 pr-20 text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     e.preventDefault();
@@ -587,7 +587,7 @@ export default function JSONSchemaViewer({
               {onOpenFullscreen && (
                 <button
                   onClick={onOpenFullscreen}
-                  className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                  className="px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
                   title="Open in fullscreen"
                 >
                   <svg
@@ -608,23 +608,23 @@ export default function JSONSchemaViewer({
               )}
               <button
                 onClick={handleExpandAll}
-                className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                className="px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
               >
                 Expand All
               </button>
               <button
                 onClick={handleCollapseAll}
-                className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                className="px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
               >
                 Collapse All
               </button>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-gray-500 dark:text-gray-400">
                 {totalProperties} {totalProperties === 1 ? 'property' : 'properties'}
               </div>
             </div>
           </div>
           {searchQuery && (
-            <div className="mt-2 text-xs text-gray-600">
+            <div className="mt-2 text-xs text-gray-600 dark:text-gray-400">
               {currentMatches.length > 0
                 ? `${currentMatchIndex + 1} of ${currentMatches.length} ${currentMatches.length === 1 ? 'match' : 'matches'}`
                 : 'No properties found'}
@@ -636,22 +636,22 @@ export default function JSONSchemaViewer({
       {/* Content */}
       <div className="flex-1 px-4 pb-4 overflow-auto">
         {isRootArray && (
-          <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+          <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-md">
             <div className="flex items-center space-x-2">
-              <span className="text-blue-600 font-medium text-sm">Array Schema</span>
-              <span className="text-blue-500 font-mono text-xs">array[object]</span>
+              <span className="text-blue-600 dark:text-blue-400 font-medium text-sm">Array Schema</span>
+              <span className="text-blue-500 dark:text-blue-400 font-mono text-xs">array[object]</span>
             </div>
-            <p className="text-blue-700 text-xs mt-1">
+            <p className="text-blue-700 dark:text-blue-300 text-xs mt-1">
               This schema defines an array of objects. Each item in the array has the properties shown below.
             </p>
           </div>
         )}
-        {description && <p className="text-gray-600 text-xs mb-5">{description}</p>}
+        {description && <p className="text-gray-600 dark:text-gray-400 text-xs mb-5">{description}</p>}
 
         {variants && (
           <div className="mb-4">
             <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600">(one of)</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">(one of)</span>
               <select
                 value={selectedVariantIndex}
                 onChange={(e) => setSelectedVariantIndex(parseInt(e.target.value))}
@@ -683,7 +683,7 @@ export default function JSONSchemaViewer({
             ))}
           </div>
         ) : !isRootArray ? (
-          <p className="text-gray-500 text-sm">Schema does not contain any properties.</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">Schema does not contain any properties.</p>
         ) : (
           <div className="text-center py-8">
             <div className="text-gray-500 text-sm">

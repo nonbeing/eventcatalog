@@ -22,7 +22,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
             href={buildUrl(`/docs/${messageRaw.collection}/${messageRaw.data.id}/${messageRaw.data.version}`)}
             className={`group-hover:text-${color}-500 flex space-x-1 items-center`}
           >
-            <div className={`flex items-center border border-gray-300 shadow-sm rounded-md group-hover:border-${color}-400`}>
+            <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md group-hover:border-${color}-400`}>
               <span className="flex items-center">
                 <span className={`bg-${color}-500 group-hover:bg-${color}-600 h-full rounded-tl rounded-bl p-1`}>
                   <ServerIcon className="h-4 w-4 text-white" />
@@ -80,12 +80,12 @@ export const columns = (tableConfiguration: TableConfiguration) => [
       );
 
       if (receives?.length === 0 || !receives)
-        return <div className="text-sm text-gray-400/80 text-left italic">Service receives no messages.</div>;
+        return <div className="text-sm text-gray-500 dark:text-gray-400 text-left italic">Service receives no messages.</div>;
 
       return (
         <div>
           {isExpandable && (
-            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 hover:text-gray-900">
+            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200">
               {isExpanded ? '▼' : '▶'} {receives.length} message{receives.length !== 1 ? 's' : ''}
             </button>
           )}
@@ -97,7 +97,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                     href={buildUrl(`/docs/${consumer.collection}/${consumer.data.id}/${consumer.data.version}`)}
                     className="group-hover:text-primary flex space-x-1 items-center "
                   >
-                    <div className={`flex items-center border border-gray-300 shadow-sm rounded-md`}>
+                    <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md`}>
                       <span className="flex items-center">
                         <span className={`bg-${consumer.color}-500 h-full rounded-tl rounded-bl p-1`}>
                           <consumer.Icon className="h-4 w-4 text-white" />
@@ -131,7 +131,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
       const [isExpanded, setIsExpanded] = useState(isOpen);
 
       if (sends?.length === 0 || !sends)
-        return <div className="text-sm text-gray-400/80 text-left italic">Service sends no messages.</div>;
+        return <div className="text-sm text-gray-500 dark:text-gray-400 text-left italic">Service sends no messages.</div>;
 
       const sendersWithIcons = useMemo(
         () =>
@@ -147,7 +147,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
       return (
         <div>
           {isExpandable && (
-            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 hover:text-gray-900">
+            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200">
               {isExpanded ? '▼' : '▶'} {sends.length} message{sends.length !== 1 ? 's' : ''}
             </button>
           )}
@@ -159,7 +159,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                     href={buildUrl(`/docs/${sender.collection}/${sender.data.id}/${sender.data.version}`)}
                     className="group-hover:text-primary flex space-x-1 items-center "
                   >
-                    <div className={`flex items-center border border-gray-300 shadow-sm rounded-md`}>
+                    <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md`}>
                       <span className="flex items-center">
                         <span className={`bg-${sender.color}-500 h-full rounded-tl rounded-bl p-1`}>
                           <sender.Icon className="h-4 w-4 text-white" />

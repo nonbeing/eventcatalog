@@ -37,14 +37,14 @@ export default function SchemaDetailsHeader({
   const hasMultipleVersions = availableVersions.length > 1;
 
   return (
-    <div className="flex-shrink-0 border-b border-gray-200 p-3">
+    <div className="flex-shrink-0 border-b border-gray-200 dark:border-gray-700 p-3">
       <div className="flex items-start justify-between mb-3">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1.5">
             <Icon className={`h-5 w-5 text-${color}-500 flex-shrink-0`} />
             <a
               href={buildUrl(`/docs/${message.collection}/${message.data.id}/${message.data.version}`)}
-              className={`text-lg font-semibold text-gray-900 hover:text-${color}-600 hover:underline truncate`}
+              className={`text-lg font-semibold text-gray-900 dark:text-gray-100 hover:text-${color}-600 dark:hover:text-${color}-400 hover:underline truncate`}
             >
               {message.data.name}
             </a>
@@ -52,7 +52,7 @@ export default function SchemaDetailsHeader({
               <select
                 value={selectedVersion || message.data.version}
                 onChange={(e) => onVersionChange(e.target.value)}
-                className="text-xs text-gray-700 bg-white border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className="text-xs text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               >
                 {availableVersions.map((v) => (
                   <option key={v.data.version} value={v.data.version}>
@@ -61,16 +61,16 @@ export default function SchemaDetailsHeader({
                 ))}
               </select>
             ) : (
-              <span className="text-xs text-gray-500 flex-shrink-0">v{message.data.version}</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 flex-shrink-0">v{message.data.version}</span>
             )}
           </div>
           <div className="flex items-center gap-1 mb-2">
             <span
-              className={`inline-flex items-center rounded-full bg-${color}-100 px-1.5 py-0.5 text-xs font-medium text-${color}-800`}
+              className={`inline-flex items-center rounded-full bg-${color}-100 dark:bg-${color}-900/50 px-1.5 py-0.5 text-xs font-medium text-${color}-800 dark:text-${color}-200`}
             >
               {message.collection}
             </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-1.5 py-0.5 text-xs font-medium text-gray-800">
+            <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200">
               {(() => {
                 const ext = message.schemaExtension?.toLowerCase();
                 if (
@@ -95,18 +95,18 @@ export default function SchemaDetailsHeader({
               })()}
             </span>
           </div>
-          {message.data.summary && <p className="text-xs text-gray-600 line-clamp-2">{message.data.summary}</p>}
+          {message.data.summary && <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">{message.data.summary}</p>}
         </div>
       </div>
 
       {/* Action Buttons */}
       <div className="flex items-center gap-2">
         {/* View Mode Toggle */}
-        <div className="flex items-center gap-1 mr-2 border-r border-gray-300 pr-2">
+        <div className="flex items-center gap-1 mr-2 border-r border-gray-300 dark:border-gray-600 pr-2">
           <button
             onClick={() => onViewModeChange('code')}
             className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded transition-colors ${
-              schemaViewMode === 'code' ? 'bg-primary text-white' : 'text-gray-600 hover:bg-gray-100'
+              schemaViewMode === 'code' ? 'bg-primary text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
             }`}
             title="Code view"
           >
@@ -117,7 +117,7 @@ export default function SchemaDetailsHeader({
             <button
               onClick={() => onViewModeChange('schema')}
               className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded transition-colors ${
-                schemaViewMode === 'schema' ? 'bg-primary text-white' : 'text-gray-600 hover:bg-gray-100'
+                schemaViewMode === 'schema' ? 'bg-primary text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
               }`}
               title="Schema view"
             >
@@ -129,7 +129,7 @@ export default function SchemaDetailsHeader({
             <button
               onClick={() => onViewModeChange('diff')}
               className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded transition-colors ${
-                schemaViewMode === 'diff' ? 'bg-primary text-white' : 'text-gray-600 hover:bg-gray-100'
+                schemaViewMode === 'diff' ? 'bg-primary text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
               }`}
               title="View version history diffs"
             >
@@ -154,7 +154,7 @@ export default function SchemaDetailsHeader({
 
         <button
           onClick={onCopy}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
           title="Copy schema to clipboard"
         >
           <ClipboardDocumentIcon className="h-4 w-4" />
@@ -162,7 +162,7 @@ export default function SchemaDetailsHeader({
         </button>
         <button
           onClick={onDownload}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
           title="Download schema file"
         >
           <ArrowDownTrayIcon className="h-4 w-4" />
@@ -170,7 +170,7 @@ export default function SchemaDetailsHeader({
         </button>
         <a
           href={buildUrl(`/docs/${message.collection}/${message.data.id}/${message.data.version}`)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors ml-auto"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors ml-auto"
           title="View full documentation"
         >
           View Docs →

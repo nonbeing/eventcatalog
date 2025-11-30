@@ -315,10 +315,10 @@ export default function SchemaExplorer({ schemas, apiAccessEnabled = false }: Sc
   return (
     <div className="h-full flex flex-col overflow-hidden">
       {/* Compact Header */}
-      <div className="flex-shrink-0 border-b border-gray-200 pb-2 mb-3">
+      <div className="flex-shrink-0 border-b border-gray-200 dark:border-gray-700 pb-2 mb-3">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Schema Explorer</h1>
-          <p className="mt-0.5 text-xs text-gray-600">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Schema Explorer</h1>
+          <p className="mt-0.5 text-xs text-gray-600 dark:text-gray-400">
             {filteredMessages.length} schema{filteredMessages.length !== 1 ? 's' : ''} available
           </p>
         </div>
@@ -327,7 +327,7 @@ export default function SchemaExplorer({ schemas, apiAccessEnabled = false }: Sc
       {/* Split View */}
       <div className="flex-1 flex gap-4 overflow-hidden">
         {/* Left: Filters + Schema List */}
-        <div className="w-1/3 flex flex-col bg-white border border-gray-200 rounded-lg overflow-hidden">
+        <div className="w-1/3 flex flex-col bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
           {/* Filters */}
           <SchemaFilters
             searchQuery={searchQuery}
@@ -347,7 +347,7 @@ export default function SchemaExplorer({ schemas, apiAccessEnabled = false }: Sc
           {/* Schema List - Independently Scrollable */}
           <div className="flex-1 overflow-y-auto">
             {paginatedMessages.length > 0 ? (
-              <div className="divide-y divide-gray-200">
+              <div className="divide-y divide-gray-200 dark:divide-gray-700">
                 {paginatedMessages.map((message) => {
                   // For services, also check spec type to determine if selected
                   const isSelected =
@@ -379,9 +379,9 @@ export default function SchemaExplorer({ schemas, apiAccessEnabled = false }: Sc
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-                <FunnelIcon className="h-12 w-12 text-gray-400 mb-3" />
-                <h3 className="text-sm font-semibold text-gray-900 mb-1">No schemas found</h3>
-                <p className="text-xs text-gray-500">Try adjusting your filters</p>
+                <FunnelIcon className="h-12 w-12 text-gray-400 dark:text-gray-500 mb-3" />
+                <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-1">No schemas found</h3>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Try adjusting your filters</p>
               </div>
             )}
           </div>
@@ -391,7 +391,7 @@ export default function SchemaExplorer({ schemas, apiAccessEnabled = false }: Sc
         </div>
 
         {/* Right: Schema Details */}
-        <div className="flex-1 bg-white border border-gray-200 rounded-lg overflow-hidden">
+        <div className="flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
           {displayMessage ? (
             <SchemaDetailsPanel
               message={displayMessage}
@@ -401,9 +401,9 @@ export default function SchemaExplorer({ schemas, apiAccessEnabled = false }: Sc
               apiAccessEnabled={apiAccessEnabled}
             />
           ) : (
-            <div className="h-full flex items-center justify-center text-gray-500">
+            <div className="h-full flex items-center justify-center text-gray-500 dark:text-gray-400">
               <div className="text-center">
-                <DocumentTextIcon className="h-12 w-12 mx-auto mb-3 text-gray-400" />
+                <DocumentTextIcon className="h-12 w-12 mx-auto mb-3 text-gray-400 dark:text-gray-500" />
                 <p>Select a schema to view details</p>
               </div>
             </div>

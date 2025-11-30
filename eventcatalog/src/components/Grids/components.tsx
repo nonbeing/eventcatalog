@@ -21,11 +21,11 @@ export function SearchBar({ searchQuery, onSearchChange, placeholder, totalResul
           placeholder={placeholder || 'Search...'}
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="block w-full rounded-lg border-0 py-2.5 pl-10 pr-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+          className="block w-full rounded-lg border-0 py-2.5 pl-10 pr-4 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
         />
         {searchQuery && (
           <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-            <button onClick={() => onSearchChange('')} className="text-gray-400 hover:text-gray-500 focus:outline-none">
+            <button onClick={() => onSearchChange('')} className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none">
               <span className="sr-only">Clear search</span>
               <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path
@@ -39,12 +39,12 @@ export function SearchBar({ searchQuery, onSearchChange, placeholder, totalResul
         )}
       </div>
       {searchQuery && totalResults !== undefined && totalItems !== undefined && (
-        <div className="mt-2 text-sm text-gray-500 flex items-center justify-between">
+        <div className="mt-2 text-sm text-gray-500 dark:text-gray-400 flex items-center justify-between">
           <span>
-            Found <span className="font-medium text-gray-900">{totalResults}</span> of{' '}
-            <span className="font-medium text-gray-900">{totalItems}</span>
+            Found <span className="font-medium text-gray-900 dark:text-gray-100">{totalResults}</span> of{' '}
+            <span className="font-medium text-gray-900 dark:text-gray-100">{totalItems}</span>
           </span>
-          <span className="text-gray-400 text-xs">ESC to clear</span>
+          <span className="text-gray-400 dark:text-gray-500 text-xs">ESC to clear</span>
         </div>
       )}
     </div>

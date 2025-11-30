@@ -17,7 +17,7 @@ export const createBadgesColumn = <T extends { data: Pick<TData<U>['data'], 'bad
       const badges = item.data.badges || [];
 
       if (badges?.length === 0 || !badges)
-        return <div className="font-light text-sm text-gray-400/60 text-left italic">No badges documented</div>;
+        return <div className="font-light text-sm text-gray-500 dark:text-gray-400 text-left italic">No badges documented</div>;
 
       return (
         <ul>
@@ -25,7 +25,7 @@ export const createBadgesColumn = <T extends { data: Pick<TData<U>['data'], 'bad
             return (
               <li key={`${badge.id}-${index}`} className="py-1 group font-light ">
                 <div className="group-hover:text-primary flex space-x-1 items-center ">
-                  <div className="flex items-center border border-gray-300 shadow-sm rounded-md">
+                  <div className="flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md">
                     <span className="flex items-center">
                       <span className={`bg-${badge.backgroundColor}-500 h-full rounded-tl rounded-bl p-1`}>
                         {(() => {

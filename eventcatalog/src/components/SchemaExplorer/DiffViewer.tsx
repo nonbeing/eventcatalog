@@ -14,8 +14,8 @@ export default function DiffViewer({ diffs, onOpenFullscreen, apiAccessEnabled =
     <div className="h-full overflow-auto p-4">
       <div className="mb-4 flex items-start justify-between">
         <div className="flex-1">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">Version History</h3>
-          <p className="text-sm text-gray-600">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">Version History</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             {apiAccessEnabled
               ? `Showing ${diffs.length} version comparison${diffs.length !== 1 ? 's' : ''}`
               : 'Compare schema versions side-by-side'}
@@ -24,7 +24,7 @@ export default function DiffViewer({ diffs, onOpenFullscreen, apiAccessEnabled =
         {onOpenFullscreen && apiAccessEnabled && (
           <button
             onClick={onOpenFullscreen}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
             title="Open in fullscreen"
           >
             <ArrowsPointingOutIcon className="h-4 w-4" />
@@ -35,32 +35,32 @@ export default function DiffViewer({ diffs, onOpenFullscreen, apiAccessEnabled =
       {apiAccessEnabled ? (
         <div className="space-y-8">
           {diffs.map((diff, index) => (
-            <div key={`${diff.newerVersion}-${diff.olderVersion}`} className="border border-gray-200 rounded-lg overflow-hidden">
-              <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
+            <div key={`${diff.newerVersion}-${diff.olderVersion}`} className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+              <div className="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
                 <div className="flex items-center justify-between">
                   <div className="text-sm">
-                    <span className="font-semibold text-gray-900">v{diff.newerVersion}</span>
-                    <span className="text-gray-500 mx-2">→</span>
-                    <span className="font-semibold text-gray-900">v{diff.olderVersion}</span>
+                    <span className="font-semibold text-gray-900 dark:text-gray-100">v{diff.newerVersion}</span>
+                    <span className="text-gray-500 dark:text-gray-400 mx-2">→</span>
+                    <span className="font-semibold text-gray-900 dark:text-gray-100">v{diff.olderVersion}</span>
                   </div>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
                     {index === 0 ? 'Latest change' : `${index + 1} version${index + 1 !== 1 ? 's' : ''} ago`}
                   </span>
                 </div>
               </div>
-              <div className="bg-white relative">
+              <div className="bg-white dark:bg-gray-800 relative">
                 <div dangerouslySetInnerHTML={{ __html: diff.diffHtml }} />
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className="bg-white border border-purple-200 rounded-lg p-8">
+        <div className="bg-white dark:bg-gray-800 border border-purple-200 dark:border-purple-800 rounded-lg p-8">
           <div className="flex flex-col items-center text-center max-w-md mx-auto">
             <div className="flex-shrink-0 mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-16 w-16 text-purple-600"
+                className="h-16 w-16 text-purple-600 dark:text-purple-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -73,8 +73,8 @@ export default function DiffViewer({ diffs, onOpenFullscreen, apiAccessEnabled =
                 />
               </svg>
             </div>
-            <h4 className="text-xl font-semibold text-gray-900 mb-2">Upgrade to Scale</h4>
-            <p className="text-sm text-gray-600 mb-6">
+            <h4 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Upgrade to Scale</h4>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
               Compare schema versions side-by-side with visual diffs. Track breaking changes, see exactly what changed between
               versions, and maintain better schema governance.
             </p>

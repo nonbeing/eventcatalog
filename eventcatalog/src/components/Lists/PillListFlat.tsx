@@ -67,7 +67,7 @@ const PillList = ({ title, pills, emptyMessage, color = 'gray', limit = 10, ...p
 
     return (
       <li
-        className=" has-tooltip rounded-md text-gray-600 group px-1 w-full hover:bg-gradient-to-l hover:from-purple-500 hover:to-purple-700 hover:text-white hover:font-normal  "
+        className=" has-tooltip rounded-md text-gray-700 dark:text-gray-300 group px-1 w-full hover:bg-gradient-to-l hover:from-purple-500 hover:to-purple-700 hover:text-white hover:font-normal  "
         key={item.href}
       >
         <a className={`leading-3`} href={href} target={item.target ?? '_self'}>
@@ -94,10 +94,10 @@ const PillList = ({ title, pills, emptyMessage, color = 'gray', limit = 10, ...p
       <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">
         <Disclosure as="div" className="" defaultOpen={pills.length <= limit}>
           <DisclosureButton className="group flex w-full items-center justify-start space-x-4">
-            <span className="text-sm text-black font-semibold group-data-[hover]:text-black/80 capitalize"> {title} </span>
-            <ChevronDownIcon className="size-5 ml-2 fill-black/60 group-data-[hover]:fill-black/50 group-data-[open]:rotate-180" />
+            <span className="text-sm text-gray-900 dark:text-gray-100 font-semibold group-data-[hover]:text-gray-700 dark:group-data-[hover]:text-gray-300 capitalize"> {title} </span>
+            <ChevronDownIcon className="size-5 ml-2 fill-gray-600 dark:fill-gray-400 group-data-[hover]:fill-gray-500 dark:group-data-[hover]:fill-gray-500 group-data-[open]:rotate-180" />
           </DisclosureButton>
-          <DisclosurePanel className="mt-2 text-sm/5 text-black/50">
+          <DisclosurePanel className="mt-2 text-sm/5 text-gray-700 dark:text-gray-300">
             <div className="space-y-2">
               {groupedPills.ungrouped.length > 0 && (
                 <ul role="list" className="space-y-2">
@@ -115,10 +115,10 @@ const PillList = ({ title, pills, emptyMessage, color = 'gray', limit = 10, ...p
                           e.stopPropagation();
                           toggleSubgroup(subgroupName);
                         }}
-                        className="p-1 hover:bg-gray-100 rounded-md"
+                        className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
                       >
                         <div className={`transition-transform duration-150 ${isCollapsed ? '' : 'rotate-180'}`}>
-                          <ChevronDownIcon className="h-3 w-3 text-gray-500" />
+                          <ChevronDownIcon className="h-3 w-3 text-gray-600 dark:text-gray-400" />
                         </div>
                       </button>
                       <button
@@ -126,7 +126,7 @@ const PillList = ({ title, pills, emptyMessage, color = 'gray', limit = 10, ...p
                           e.stopPropagation();
                           toggleSubgroup(subgroupName);
                         }}
-                        className="flex-grow flex items-center justify-between px-2 py-0.5 text-xs font-bold rounded-md text-gray-900 uppercase"
+                        className="flex-grow flex items-center justify-between px-2 py-0.5 text-xs font-bold rounded-md text-gray-900 dark:text-gray-100 uppercase"
                       >
                         {subgroupName} ({subgroupPills.length})
                       </button>
@@ -134,7 +134,7 @@ const PillList = ({ title, pills, emptyMessage, color = 'gray', limit = 10, ...p
                     <div
                       className={`overflow-hidden transition-[height] duration-150 ease-out ${isCollapsed ? 'h-0' : 'h-auto'}`}
                     >
-                      <ul role="list" className="space-y-2 border-l border-gray-200/80 ml-[9px] pl-4 pt-2">
+                      <ul role="list" className="space-y-2 border-l border-gray-200/80 dark:border-gray-700/80 ml-[9px] pl-4 pt-2">
                         {subgroupPills.map(renderPillItem)}
                       </ul>
                     </div>
@@ -144,14 +144,14 @@ const PillList = ({ title, pills, emptyMessage, color = 'gray', limit = 10, ...p
 
               {pills.length === 0 && emptyMessage && (
                 <div className="inline mr-2 leading-tight text-xs">
-                  <span className="text-gray-400">{emptyMessage}</span>
+                  <span className="text-gray-600 dark:text-gray-400">{emptyMessage}</span>
                 </div>
               )}
             </div>
           </DisclosurePanel>
         </Disclosure>
       </div>
-      <div className="border-b border-gray-100 my-4"></div>
+      <div className="border-b border-gray-100 dark:border-gray-800 my-4"></div>
     </div>
   );
 };

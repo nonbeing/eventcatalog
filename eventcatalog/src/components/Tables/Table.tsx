@@ -243,13 +243,13 @@ export const Table = <T extends TCollectionTypes>({
   return (
     <div>
       {/* <div className='text-right text-gray-400'>{table.getPrePaginationRowModel().rows.length} results</div> */}
-      <div className=" bg-gray-100/20 rounded-md border-2 border-gray-200 shadow-sm ">
-        <table className="min-w-full divide-y divide-gray-200 rounded-md ">
-          <thead className="bg-gray-200/50">
+      <div className=" bg-gray-100/20 dark:bg-gray-800/20 rounded-md border-2 border-gray-200 dark:border-gray-700 shadow-sm ">
+        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 rounded-md ">
+          <thead className="bg-gray-200/50 dark:bg-gray-800/50">
             {table.getHeaderGroups().map((headerGroup, index) => (
               <tr key={`${headerGroup}-${index}`} className="rounded-tl-lg">
                 {headerGroup.headers.map((header) => (
-                  <th key={`${header.id}`} className="pl-4 pr-3 text-left text-sm font-semibold text-gray-800 sm:pl-0  ">
+                  <th key={`${header.id}`} className="pl-4 pr-3 text-left text-sm font-semibold text-gray-800 dark:text-gray-200 sm:pl-0  ">
                     <div className="flex flex-col justify-start px-2 py-2 space-y-2">
                       <div className="text-md">
                         {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
@@ -265,13 +265,13 @@ export const Table = <T extends TCollectionTypes>({
             ))}
           </thead>
 
-          <tbody className="divide-y divide-gray-300 ">
+          <tbody className="divide-y divide-gray-300 dark:divide-gray-700 ">
             {table.getRowModel().rows.map((row, index) => (
               <tr key={`${row.id}-${index}`}>
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
-                    className={` py-4 pl-4 pr-3 text-sm font-medium text-gray-900  ${cell.column.columnDef.meta?.className}`}
+                    className={` py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-gray-100  ${cell.column.columnDef.meta?.className}`}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
@@ -285,40 +285,40 @@ export const Table = <T extends TCollectionTypes>({
         <div className="h-8" />
         <div className="flex items-center gap-2 justify-end px-4  ">
           <button
-            className="relative inline-flex items-center rounded-l-md bg-white px-2 py-1 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+            className="relative inline-flex items-center rounded-l-md bg-white dark:bg-gray-800 px-2 py-1 text-gray-600 dark:text-gray-300 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-10"
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
             {'<<'}
           </button>
           <button
-            className="relative inline-flex items-center  bg-white px-2 py-1 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+            className="relative inline-flex items-center  bg-white dark:bg-gray-800 px-2 py-1 text-gray-600 dark:text-gray-300 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-10"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
             {'<'}
           </button>
           <button
-            className="relative inline-flex items-center  bg-white px-2 py-1 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+            className="relative inline-flex items-center  bg-white dark:bg-gray-800 px-2 py-1 text-gray-600 dark:text-gray-300 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-10"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
             {'>'}
           </button>
           <button
-            className="relative inline-flex items-center rounded-r-md bg-white px-2 py-1 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+            className="relative inline-flex items-center rounded-r-md bg-white dark:bg-gray-800 px-2 py-1 text-gray-600 dark:text-gray-300 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-10"
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >
             {'>>'}
           </button>
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1 text-gray-700 dark:text-gray-300">
             <div>Page</div>
             <strong>
               {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
             </strong>
           </span>
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1 text-gray-700 dark:text-gray-300">
             | Go to page:
             <input
               type="number"
@@ -327,7 +327,7 @@ export const Table = <T extends TCollectionTypes>({
                 const page = e.target.value ? Number(e.target.value) - 1 : 0;
                 table.setPageIndex(page);
               }}
-              className="border border-gray-300 p-1 rounded w-16"
+              className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-1 rounded w-16"
             />
           </span>
           <select
@@ -335,6 +335,7 @@ export const Table = <T extends TCollectionTypes>({
             onChange={(e) => {
               table.setPageSize(Number(e.target.value));
             }}
+            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-1 rounded"
           >
             {[10, 20, 30, 40, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
@@ -407,7 +408,7 @@ function Filter<T extends TCollectionTypes>({ column }: { column: Column<TData<T
         value={(columnFilterValue ?? '') as string}
         onChange={(value) => column.setFilterValue(value)}
         placeholder={`Search... ${!column?.columnDef?.meta?.filterVariant ? `(${column.getFacetedUniqueValues().size})` : ''}`}
-        className="w-full p-2 border shadow rounded"
+        className="w-full p-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 shadow rounded"
         list={column.id + 'list'}
       />
       <div className="h-1" />

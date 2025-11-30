@@ -28,7 +28,7 @@ function startsWithProtocol(str: string) {
   <a
     href={startsWithProtocol(href) ? href : buildUrl(href)}
     target={openWindow ? '_blank' : '_self'}
-    class="block relative bg-white border border-gray-200 rounded-xl p-8 h-48 transition-all duration-300 ease-out hover:border-purple-300 hover:shadow-lg hover:shadow-purple-500/10 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 overflow-hidden"
+    class="block relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-8 h-48 transition-all duration-300 ease-out hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg hover:shadow-purple-500/10 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 overflow-hidden"
   >
     <!-- Icon centered in card with grid background -->
     <div class="relative h-full flex items-center justify-center">
@@ -48,10 +48,10 @@ function startsWithProtocol(str: string) {
 
   <!-- Title and description outside card -->
   <div class="mt-4 space-y-0">
-    <h2 class="text-gray-900 text-lg font-semibold">
+    <h2 class="text-gray-900 dark:text-gray-100 text-lg font-semibold">
       {title}
     </h2>
-    <p class="text-gray-600 text-sm leading-relaxed">
+    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
       {description}
     </p>
   </div>

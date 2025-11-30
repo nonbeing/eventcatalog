@@ -30,15 +30,15 @@ export default function ApiAccessSection({
   const curlCommand = typeof window !== 'undefined' ? `curl -X GET "${window.location.origin}${apiPath}"` : '';
 
   return (
-    <div className="flex-shrink-0 border-b border-gray-200">
+    <div className="flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between px-4 py-1.5 text-left hover:bg-gray-50 transition-colors"
+        className="w-full flex items-center justify-between px-4 py-1.5 text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
       >
         <div className="flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4 text-gray-600"
+            className="h-4 w-4 text-gray-600 dark:text-gray-400"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -50,19 +50,19 @@ export default function ApiAccessSection({
               d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          <span className="text-xs font-semibold text-gray-900">API Access</span>
-          <span className="inline-flex items-center rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800">
+          <span className="text-xs font-semibold text-gray-900 dark:text-gray-100">API Access</span>
+          <span className="inline-flex items-center rounded-full bg-purple-100 dark:bg-purple-900 px-2 py-0.5 text-xs font-medium text-purple-800 dark:text-purple-200">
             Scale
           </span>
         </div>
-        {isExpanded ? <ChevronUpIcon className="h-4 w-4 text-gray-600" /> : <ChevronDownIcon className="h-4 w-4 text-gray-600" />}
+        {isExpanded ? <ChevronUpIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" /> : <ChevronDownIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />}
       </button>
 
       {isExpanded && (
-        <div className="px-4 pb-2 bg-gray-50">
+        <div className="px-4 pb-2 bg-gray-50 dark:bg-gray-800/50">
           {apiAccessEnabled ? (
             <>
-              <p className="text-xs text-gray-600 mb-2">Access this schema programmatically via API</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">Access this schema programmatically via API</p>
               <div className="bg-gray-900 rounded-md p-3">
                 <div className="flex items-start justify-between mb-2">
                   <span className="text-xs text-gray-400 font-mono">GET</span>
@@ -83,12 +83,12 @@ export default function ApiAccessSection({
               </div>
             </>
           ) : (
-            <div className="bg-white border border-purple-200 rounded-md p-4">
+            <div className="bg-white dark:bg-gray-800 border border-purple-200 dark:border-purple-800 rounded-md p-4">
               <div className="flex items-start gap-3">
                 <div className="flex-shrink-0">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-purple-600"
+                    className="h-5 w-5 text-purple-600 dark:text-purple-400"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -102,8 +102,8 @@ export default function ApiAccessSection({
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-1">Upgrade to Scale</h4>
-                  <p className="text-xs text-gray-600 mb-3">
+                  <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-1">Upgrade to Scale</h4>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
                     Access your schemas programmatically via API. Perfect for CI/CD pipelines, automation, and integrations.
                   </p>
                   <a

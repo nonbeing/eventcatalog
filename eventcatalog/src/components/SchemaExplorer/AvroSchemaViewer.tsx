@@ -303,7 +303,7 @@ export default function AvroSchemaViewer({
 
   if (!schema || schema.type !== 'record') {
     return (
-      <div className="flex items-center justify-center p-8 text-gray-500">
+      <div className="flex items-center justify-center p-8 text-gray-500 dark:text-gray-400">
         <p className="text-sm">Invalid Avro schema format</p>
       </div>
     );
@@ -318,12 +318,12 @@ export default function AvroSchemaViewer({
 
   return (
     <div
-      className={`${heightClass} ${overflowClass} flex flex-col bg-white border border-gray-100 rounded-md shadow-sm`}
+      className={`${heightClass} ${overflowClass} flex flex-col bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-md shadow-sm`}
       style={containerStyle}
     >
       {/* Toolbar */}
       {searchBool && (
-        <div className="flex-shrink-0 bg-white pt-4 px-4 pb-3 border-b border-gray-100 shadow-sm">
+        <div className="flex-shrink-0 bg-white dark:bg-gray-800 pt-4 px-4 pb-3 border-b border-gray-100 dark:border-gray-700 shadow-sm">
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1 relative">
               <input
@@ -332,7 +332,7 @@ export default function AvroSchemaViewer({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search fields..."
-                className="w-full px-3 py-1.5 pr-20 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-1.5 pr-20 text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     e.preventDefault();
@@ -371,7 +371,7 @@ export default function AvroSchemaViewer({
               {onOpenFullscreen && (
                 <button
                   onClick={onOpenFullscreen}
-                  className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                  className="px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
                   title="Open in fullscreen"
                 >
                   <svg
@@ -392,23 +392,23 @@ export default function AvroSchemaViewer({
               )}
               <button
                 onClick={handleExpandAll}
-                className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                className="px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
               >
                 Expand All
               </button>
               <button
                 onClick={handleCollapseAll}
-                className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                className="px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
               >
                 Collapse All
               </button>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-gray-500 dark:text-gray-400">
                 {totalFields} {totalFields === 1 ? 'field' : 'fields'}
               </div>
             </div>
           </div>
           {searchQuery && (
-            <div className="mt-2 text-xs text-gray-600">
+            <div className="mt-2 text-xs text-gray-600 dark:text-gray-400">
               {currentMatches.length > 0
                 ? `${currentMatchIndex + 1} of ${currentMatches.length} ${currentMatches.length === 1 ? 'match' : 'matches'}`
                 : 'No fields found'}
@@ -420,11 +420,11 @@ export default function AvroSchemaViewer({
       {/* Schema info */}
       <div className="px-4 pt-4">
         <div className="flex items-baseline gap-2 mb-2">
-          <span className="text-sm font-medium text-gray-600">Record:</span>
-          <span className="font-mono text-sm text-blue-600">{schema.name}</span>
-          {schema.namespace && <span className="font-mono text-xs text-gray-500">({schema.namespace})</span>}
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Record:</span>
+          <span className="font-mono text-sm text-blue-600 dark:text-blue-400">{schema.name}</span>
+          {schema.namespace && <span className="font-mono text-xs text-gray-500 dark:text-gray-400">({schema.namespace})</span>}
         </div>
-        {schema.doc && <p className="text-gray-600 text-xs mb-4">{schema.doc}</p>}
+        {schema.doc && <p className="text-gray-600 dark:text-gray-400 text-xs mb-4">{schema.doc}</p>}
       </div>
 
       {/* Fields */}

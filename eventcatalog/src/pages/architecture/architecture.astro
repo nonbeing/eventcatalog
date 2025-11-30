@@ -75,7 +75,7 @@ if (type === 'services') {
 ---
 
 <VerticalSideBarLayout title={'EventCatalog'}>
-  <div class="bg-white min-h-screen">
+  <div class="bg-white dark:bg-gray-900 min-h-screen">
     <div class="max-w-[90em] mx-auto">
       <div class="px-6 py-6" transition:animate={fade({ duration: '0.4s' })}>
         {type === 'domains' && <DomainGrid domains={domains} embeded={embeded} client:load />}

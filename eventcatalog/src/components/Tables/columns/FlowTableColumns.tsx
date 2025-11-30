@@ -21,7 +21,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
             href={buildUrl(`/docs/${flowRaw.collection}/${flowRaw.data.id}/${flowRaw.data.version}`)}
             className={`group-hover:text-${color}-500 flex space-x-1 items-center`}
           >
-            <div className={`flex items-center border border-gray-300 shadow-sm rounded-md group-hover:border-${color}-400`}>
+            <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md group-hover:border-${color}-400`}>
               <span className="flex items-center">
                 <span className={`bg-${color}-500 group-hover:bg-${color}-600 h-full rounded-tl rounded-bl p-1`}>
                   <QueueListIcon className="h-4 w-4 text-white" />

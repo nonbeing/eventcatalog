@@ -139,7 +139,7 @@ export default function SchemaDetailsPanel({
   const isCopied = copiedId === message.data.id;
 
   return (
-    <div className="h-full flex flex-col bg-white overflow-hidden">
+    <div className="h-full flex flex-col bg-white dark:bg-gray-800 overflow-hidden">
       {/* Header */}
       <SchemaDetailsHeader
         message={message}

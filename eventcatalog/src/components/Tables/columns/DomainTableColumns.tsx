@@ -21,7 +21,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
             href={buildUrl(`/docs/${messageRaw.collection}/${messageRaw.data.id}/${messageRaw.data.version}`)}
             className={`group-hover:text-${color}-500 flex space-x-1 items-center`}
           >
-            <div className={`flex items-center border border-gray-300 shadow-sm rounded-md group-hover:border-${color}-400`}>
+            <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md group-hover:border-${color}-400`}>
               <span className="flex items-center">
                 <span className={`bg-${color}-500 group-hover:bg-${color}-600 h-full rounded-tl rounded-bl p-1`}>
                   <RectangleGroupIcon className="h-4 w-4 text-white" />
@@ -65,7 +65,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
     cell: (info) => {
       const services = info.getValue();
       if (services?.length === 0 || !services)
-        return <div className="text-sm text-gray-400/80 text-left italic">Domain has no services.</div>;
+        return <div className="text-sm text-gray-500 dark:text-gray-400 text-left italic">Domain has no services.</div>;
 
       return (
         <ul>
@@ -77,7 +77,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                   href={buildUrl(`/docs/${consumer.collection}/${consumer.data.id}/${consumer.data.version}`)}
                   className="group-hover:text-primary flex space-x-1 items-center "
                 >
-                  <div className={`flex items-center border border-gray-300 rounded-md`}>
+                  <div className={`flex items-center border border-gray-300 dark:border-gray-600 rounded-md`}>
                     <span className="flex items-center">
                       <span className={`bg-${color}-500 h-full rounded-tl rounded-bl p-1`}>
                         <ServerIcon className="h-4 w-4 text-white" />

@@ -51,7 +51,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
     cell: (info) => {
       const events = info.getValue();
       if (events?.length === 0 || !events)
-        return <div className="font-light text-sm text-gray-400/80 text-left italic">Team owns no events</div>;
+        return <div className="font-light text-sm text-gray-500 dark:text-gray-400 text-left italic">Team owns no events</div>;
 
       const isExpandable = events?.length > 10;
       const isOpen = isExpandable ? events?.length < 10 : true;
@@ -60,7 +60,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
       return (
         <div>
           {isExpandable && (
-            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 hover:text-gray-900">
+            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200">
               {isExpanded ? '▼' : '▶'} {events.length} event{events.length !== 1 ? 's' : ''}
             </button>
           )}
@@ -72,7 +72,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                     href={buildUrl(`/docs/${event.collection}/${event.data.id}/${event.data.version}`)}
                     className="group-hover:text-primary flex space-x-1 items-center "
                   >
-                    <div className={`flex items-center border border-gray-300 shadow-sm rounded-md`}>
+                    <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md`}>
                       <span className="flex items-center">
                         <span className={`bg-orange-500 h-full rounded-tl rounded-bl p-1`}>
                           <BoltIcon className="h-4 w-4 text-white" />
@@ -104,7 +104,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
     cell: (info) => {
       const commands = info.getValue();
       if (commands?.length === 0 || !commands)
-        return <div className="font-light text-sm text-gray-400/60 text-left italic">Team owns no commands</div>;
+        return <div className="font-light text-sm text-gray-500 dark:text-gray-400 text-left italic">Team owns no commands</div>;
 
       const isExpandable = commands?.length > 10;
       const isOpen = isExpandable ? commands?.length < 10 : true;
@@ -113,7 +113,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
       return (
         <div>
           {isExpandable && (
-            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 hover:text-gray-900">
+            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200">
               {isExpanded ? '▼' : '▶'} {commands.length} command{commands.length !== 1 ? 's' : ''}
             </button>
           )}
@@ -125,7 +125,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                     href={buildUrl(`/docs/${command.collection}/${command.data.id}/${command.data.version}`)}
                     className="group-hover:text-primary flex space-x-1 items-center "
                   >
-                    <div className={`flex items-center border border-gray-300 shadow-sm rounded-md`}>
+                    <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md`}>
                       <span className="flex items-center">
                         <span className={`bg-blue-500 h-full rounded-tl rounded-bl p-1`}>
                           <ChatBubbleLeftIcon className="h-4 w-4 text-white" />
@@ -159,7 +159,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
     cell: (info) => {
       const queries = info.getValue();
       if (queries?.length === 0 || !queries)
-        return <div className="font-light text-sm text-gray-400/60 text-left italic">Team owns no queries</div>;
+        return <div className="font-light text-sm text-gray-500 dark:text-gray-400 text-left italic">Team owns no queries</div>;
 
       const isExpandable = queries?.length > 10;
       const isOpen = isExpandable ? queries?.length < 10 : true;
@@ -168,7 +168,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
       return (
         <div>
           {isExpandable && (
-            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 hover:text-gray-900">
+            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200">
               {isExpanded ? '▼' : '▶'} {queries.length} query{queries.length !== 1 ? 's' : ''}
             </button>
           )}
@@ -180,7 +180,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                     href={buildUrl(`/docs/${query.collection}/${query.data.id}/${query.data.version}`)}
                     className="group-hover:text-primary flex space-x-1 items-center "
                   >
-                    <div className={`flex items-center border border-gray-300 shadow-sm rounded-md`}>
+                    <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md`}>
                       <span className="flex items-center">
                         <span className={`bg-blue-500 h-full rounded-tl rounded-bl p-1`}>
                           <ChatBubbleLeftIcon className="h-4 w-4 text-white" />
@@ -214,7 +214,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
     cell: (info) => {
       const services = info.getValue();
       if (services?.length === 0 || !services)
-        return <div className="font-light text-sm text-gray-400/80 text-left italic">Team owns no services</div>;
+        return <div className="font-light text-sm text-gray-500 dark:text-gray-400 text-left italic">Team owns no services</div>;
 
       const isExpandable = services?.length > 10;
       const isOpen = isExpandable ? services?.length < 10 : true;
@@ -223,7 +223,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
       return (
         <div>
           {isExpandable && (
-            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 hover:text-gray-900">
+            <button onClick={() => setIsExpanded(!isExpanded)} className="mb-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200">
               {isExpanded ? '▼' : '▶'} {services.length} service{services.length !== 1 ? 's' : ''}
             </button>
           )}
@@ -235,7 +235,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                     href={buildUrl(`/docs/${service.collection}/${service.data.id}/${service.data.version}`)}
                     className="group-hover:text-primary flex space-x-1 items-center "
                   >
-                    <div className={`flex items-center border border-gray-300 shadow-sm rounded-md`}>
+                    <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md`}>
                       <span className="flex items-center">
                         <span className={`bg-green-500 h-full rounded-tl rounded-bl p-1`}>
                           <ServerIcon className="h-4 w-4 text-white" />

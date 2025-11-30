@@ -22,7 +22,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
             href={buildUrl(`/docs/${containerRaw.collection}/${containerRaw.data.id}/${containerRaw.data.version}`)}
             className={`group-hover:text-${color}-500 flex space-x-1 items-center`}
           >
-            <div className={`flex items-center border border-gray-300 shadow-sm rounded-md group-hover:border-${color}-400`}>
+            <div className={`flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md group-hover:border-${color}-400`}>
               <span className="flex items-center">
                 <span className={`bg-${color}-500 group-hover:bg-${color}-600 h-full rounded-tl rounded-bl p-1`}>
                   <DatabaseIcon className="h-4 w-4 text-white" />
@@ -62,7 +62,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
     cell: (info) => {
       const services = info.getValue();
       if (services?.length === 0 || !services)
-        return <div className="font-light text-sm text-gray-400/60 text-left italic">No services documented</div>;
+        return <div className="font-light text-sm text-gray-500 dark:text-gray-400 text-left italic">No services documented</div>;
       return (
         <ul className="">
           {services.map((service, index) => {
@@ -72,7 +72,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                   href={buildUrl(`/docs/${service.collection}/${service.data.id}/${service.data.version}`)}
                   className="group-hover:text-primary flex space-x-1 items-center "
                 >
-                  <div className="flex items-center border border-gray-300 shadow-sm rounded-md">
+                  <div className="flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md">
                     <span className="flex items-center">
                       <span className="bg-pink-500 h-full rounded-tl rounded-bl p-1">
                         <ServerIcon className="h-4 w-4 text-white" />
@@ -102,7 +102,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
     cell: (info) => {
       const services = info.getValue();
       if (services?.length === 0 || !services)
-        return <div className="font-light text-sm text-gray-400/60 text-left italic">No services documented</div>;
+        return <div className="font-light text-sm text-gray-500 dark:text-gray-400 text-left italic">No services documented</div>;
       return (
         <ul className="">
           {services.map((service, index) => {
@@ -112,7 +112,7 @@ export const columns = (tableConfiguration: TableConfiguration) => [
                   href={buildUrl(`/docs/${service.collection}/${service.data.id}/${service.data.version}`)}
                   className="group-hover:text-primary flex space-x-1 items-center "
                 >
-                  <div className="flex items-center border border-gray-300 shadow-sm rounded-md">
+                  <div className="flex items-center border border-gray-300 dark:border-gray-600 shadow-sm rounded-md">
                     <span className="flex items-center">
                       <span className="bg-pink-500 h-full rounded-tl rounded-bl p-1">
                         <ServerIcon className="h-4 w-4 text-white" />
