@@ -70,16 +70,16 @@ export function TypeFilters({ selectedTypes, onTypeChange, filteredCount, totalC
                             transition-colors duration-200
                             ${
                               isSelected
-                                ? `bg-${color}-100 text-${color}-700 ring-2 ring-${color}-500`
-                                : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                                ? `bg-${color}-100 dark:bg-${color}-900/30 text-${color}-700 dark:text-${color}-300 ring-2 ring-${color}-500`
+                                : 'bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                             }
                         `}
           >
-            <Icon className={`h-4 w-4 ${isSelected ? `text-${color}-500` : 'text-gray-400'}`} />
+            <Icon className={`h-4 w-4 ${isSelected ? `text-${color}-500` : 'text-gray-400 dark:text-gray-500'}`} />
             <span className="capitalize">{type}</span>
             {isSelected && filteredCount !== undefined && (
               <span
-                className={`inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium bg-${color}-50 text-${color}-700 rounded-full`}
+                className={`inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium bg-${color}-50 dark:bg-${color}-900/40 text-${color}-700 dark:text-${color}-300 rounded-full`}
               >
                 {filteredCount}
               </span>
@@ -88,7 +88,7 @@ export function TypeFilters({ selectedTypes, onTypeChange, filteredCount, totalC
         );
       })}
       {selectedTypes.length > 0 && (
-        <button onClick={() => onTypeChange([])} className="text-xs text-gray-500 hover:text-gray-700 hover:underline">
+        <button onClick={() => onTypeChange([])} className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:underline">
           Clear filters
         </button>
       )}
@@ -100,26 +100,26 @@ export function Pagination({ currentPage, totalPages, totalItems, itemsPerPage, 
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex items-center justify-between border-gray-200 bg-white px-4 py-3 sm:px-6">
+    <div className="flex items-center justify-between border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between sm:hidden">
         <button
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
-          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+          className="relative inline-flex items-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50"
         >
           Previous
         </button>
         <button
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
-          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50"
         >
           Next
         </button>
       </div>
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div className="pr-4">
-          <p className="text-sm text-gray-700">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to{' '}
             <span className="font-medium">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of{' '}
             <span className="font-medium">{totalItems}</span> results
@@ -130,7 +130,7 @@ export function Pagination({ currentPage, totalPages, totalItems, itemsPerPage, 
             <button
               onClick={() => onPageChange(1)}
               disabled={currentPage === 1}
-              className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
+              className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
             >
               <span className="sr-only">First</span>
               <ChevronDoubleLeftIcon className="h-5 w-5" aria-hidden="true" />
@@ -138,18 +138,18 @@ export function Pagination({ currentPage, totalPages, totalItems, itemsPerPage, 
             <button
               onClick={() => onPageChange(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className="relative inline-flex items-center px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
+              className="relative inline-flex items-center px-2 py-2 text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
             >
               <span className="sr-only">Previous</span>
               <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
             </button>
-            <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">
+            <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 dark:text-gray-100 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 focus:outline-offset-0">
               Page {currentPage} of {totalPages}
             </span>
             <button
               onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
-              className="relative inline-flex items-center px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
+              className="relative inline-flex items-center px-2 py-2 text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
             >
               <span className="sr-only">Next</span>
               <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
@@ -157,7 +157,7 @@ export function Pagination({ currentPage, totalPages, totalItems, itemsPerPage, 
             <button
               onClick={() => onPageChange(totalPages)}
               disabled={currentPage === totalPages}
-              className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
+              className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
             >
               <span className="sr-only">Last</span>
               <ChevronDoubleRightIcon className="h-5 w-5" aria-hidden="true" />
