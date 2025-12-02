@@ -1,4 +1,3 @@
-import { gray } from 'tailwindcss/colors';
 import { TreeView } from '@components/TreeView';
 import { navigate } from 'astro:transitions/client';
 import type { TreeNode as RawTreeNode } from './getTreeView';
@@ -40,7 +39,7 @@ function TreeNode({ node }: { node: TreeNode }) {
         </TreeView.LeadingVisual>
       )}
       <span
-        className={node?.isLabel ? ' capitalize  text-[13px]  text-purple-900 font-extrabold' : 'font-light text-[14px] -ml-0.5'}
+        className={node?.isLabel ? ' capitalize  text-[13px]  text-purple-500 dark:text-purple-400 font-extrabold' : 'font-light text-[14px] -ml-0.5 text-gray-700 dark:text-gray-300'}
       >
         {node.name} {node.isLabel ? `(${node.children.length})` : ''}
       </span>
@@ -62,6 +61,21 @@ export function SideNavTreeView({ tree }: { tree: TreeNode }) {
   }
   bubbleUpExpanded(tree);
 
+  // Check if dark mode is active - start with false for SSR, then sync on mount
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Set initial value on mount
+    setIsDark(document.documentElement.classList.contains('dark'));
+
+    // Listen for changes
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <nav id="resources-tree" className="px-2 py-2">
       <TreeView
@@ -70,16 +84,15 @@ export function SideNavTreeView({ tree }: { tree: TreeNode }) {
           // @ts-expect-error inline css var
           '--base-size-8': '0.5rem',
           '--base-size-12': '0.75rem',
-          '--borderColor-muted': '#fff',
+          '--borderColor-muted': isDark ? '#334155' : '#fff',
           '--borderRadius-medium': '0.375rem',
           '--borderWidth-thick': '0.125rem',
           '--borderWidth-thin': '0.0625rem',
           '--boxShadow-thick': 'inset 0 0 0 var(--borderWidth-thick)',
-          '--control-transparent-bgColor-hover': '#656c7626',
-          '--control-transparent-bgColor-selected': '#656c761a',
-          // '--fgColor-accent': purple[700],
-          '--fgColor-default': gray[600],
-          '--fgColor-muted': gray[600],
+          '--control-transparent-bgColor-hover': isDark ? '#334155' : '#656c7626',
+          '--control-transparent-bgColor-selected': isDark ? 'rgba(168, 85, 247, 0.35)' : '#656c761a',
+          '--fgColor-default': isDark ? '#e2e8f0' : '#374151',
+          '--fgColor-muted': isDark ? '#cbd5e1' : '#6b7280',
           '--text-body-size-medium': '0.875rem',
           '--stack-gap-condensed': '0.5rem',
           '--treeViewItem-leadingVisual-iconColor-rest': 'var(--fgColor-muted)',
