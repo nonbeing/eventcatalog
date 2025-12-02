@@ -114,14 +114,14 @@ const AvroField = ({ field, level, expand, showRequired }: AvroFieldProps) => {
   }, [expand]);
 
   return (
-    <div className={`avro-field-container mb-2 border-l border-gray-200 ${indentClass}`}>
+    <div className={`avro-field-container mb-2 border-l border-gray-200 dark:border-gray-600 ${indentClass}`}>
       <div className="flex space-x-2">
         {/* Collapse/Expand button */}
         <div className="flex-shrink-0 w-4 pt-0.5">
           {hasNested ? (
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="avro-field-toggle text-gray-500 hover:text-gray-700 w-4 text-center"
+              className="avro-field-toggle text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 w-4 text-center"
               aria-expanded={isExpanded}
             >
               <span className="font-mono text-xs">{isExpanded ? '▼' : '▶'}</span>
@@ -132,19 +132,19 @@ const AvroField = ({ field, level, expand, showRequired }: AvroFieldProps) => {
         {/* Field details */}
         <div className="flex-grow min-w-0">
           <div className="flex flex-wrap items-baseline gap-x-1.5 gap-y-1">
-            <span className="avro-field-name font-semibold text-gray-800 text-sm">{field.name}</span>
-            <span className="text-purple-600 font-mono text-xs">{formatAvroType(field.type)}</span>
-            {showRequired && isRequired && <span className="text-red-600 text-xs ml-auto flex-shrink-0">required</span>}
+            <span className="avro-field-name font-semibold text-gray-800 dark:text-gray-100 text-sm">{field.name}</span>
+            <span className="text-purple-600 dark:text-purple-400 font-mono text-xs">{formatAvroType(field.type)}</span>
+            {showRequired && isRequired && <span className="text-red-600 dark:text-red-400 text-xs ml-auto flex-shrink-0">required</span>}
           </div>
 
-          {field.doc && <p className="text-gray-600 text-xs mt-1">{field.doc}</p>}
+          {field.doc && <p className="text-gray-600 dark:text-gray-300 text-xs mt-1">{field.doc}</p>}
 
           {/* Show enum values if present */}
           {field.type?.type === 'enum' && field.type.symbols && (
-            <div className="text-xs text-gray-500 mt-1">
+            <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
               Values:{' '}
               {field.type.symbols.map((s: string) => (
-                <code key={s} className="bg-gray-100 px-1 rounded mx-0.5">
+                <code key={s} className="bg-gray-100 dark:bg-gray-700 px-1 rounded mx-0.5">
                   {s}
                 </code>
               ))}
@@ -230,7 +230,7 @@ export default function AvroSchemaViewer({
 
         // Highlight the search term
         const regex = new RegExp(`(${query})`, 'gi');
-        nameEl.innerHTML = (nameEl.textContent || '').replace(regex, '<mark class="bg-yellow-200 rounded px-0.5">$1</mark>');
+        nameEl.innerHTML = (nameEl.textContent || '').replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-700 rounded px-0.5">$1</mark>');
 
         // Expand parent containers
         let parent = container.parentElement;

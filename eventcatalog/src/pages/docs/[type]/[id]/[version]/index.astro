@@ -379,7 +379,7 @@ nodeGraphs.push({
                       <p>This resource has been marked as a draft and may still be under development.</p>
                     )}
                     {props.data.draft.message && (
-                      <div class="prose prose-sm max-w-none" set:html={marked.parse(props.data.draft.message)} />
+                      <div class="prose prose-sm max-w-none dark:prose-invert" set:html={marked.parse(props.data.draft.message)} />
                     )}
                   </div>
                 </Admonition>

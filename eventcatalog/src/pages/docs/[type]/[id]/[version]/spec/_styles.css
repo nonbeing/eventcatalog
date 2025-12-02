@@ -1,3 +1,30 @@
 #nav-bar-search {
     margin: 0 10px;
 }
+
+/* Dark mode overrides for Scalar API Reference */
+:root.dark .scalar-app {
+    --scalar-background-1: #111827 !important;
+    --scalar-background-2: #1f2937 !important;
+    --scalar-background-3: #374151 !important;
+    --scalar-background-4: #4b5563 !important;
+
+    --scalar-color-1: #f3f4f6 !important;
+    --scalar-color-2: #d1d5db !important;
+    --scalar-color-3: #9ca3af !important;
+
+    --scalar-border-color: #374151 !important;
+
+    --scalar-background-accent: #1f2937 !important;
+
+    /* Sidebar specific */
+    --scalar-sidebar-background-1: #111827 !important;
+    --scalar-sidebar-color-1: #f3f4f6 !important;
+    --scalar-sidebar-color-2: #d1d5db !important;
+    --scalar-sidebar-color-active: #a78bfa !important;
+    --scalar-sidebar-border-color: #374151 !important;
+
+    /* Code blocks */
+    --scalar-code-background: #1f2937 !important;
+    --scalar-code-color: #e5e7eb !important;
+}

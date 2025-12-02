@@ -225,7 +225,7 @@ const SchemaProperty = ({ name, details, isRequired, level, isListItem = false, 
   const indentationClass = `pl-${level * 3}`;
 
   return (
-    <div className={`property-container mb-1.5 border-l border-gray-100 relative ${indentationClass}`}>
+    <div className={`property-container mb-1.5 border-l border-gray-100 dark:border-gray-600 relative ${indentationClass}`}>
       <div className="flex items-start space-x-1.5">
         {isCollapsible ? (
           <button
@@ -233,7 +233,7 @@ const SchemaProperty = ({ name, details, isRequired, level, isListItem = false, 
             aria-expanded={isExpanded}
             aria-controls={contentId}
             onClick={() => setIsExpanded(!isExpanded)}
-            className="property-toggle text-gray-500 hover:text-gray-700 pt-0.5 focus:outline-none w-3 text-center flex-shrink-0"
+            className="property-toggle text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 pt-0.5 focus:outline-none w-3 text-center flex-shrink-0"
           >
             <span className={`icon-collapsed font-mono text-xs ${isExpanded ? 'hidden' : ''}`}>&gt;</span>
             <span className={`icon-expanded font-mono text-xs ${!isExpanded ? 'hidden' : ''}`}>v</span>
@@ -245,13 +245,13 @@ const SchemaProperty = ({ name, details, isRequired, level, isListItem = false, 
         <div className="flex-grow">
           <div className="flex justify-between items-baseline">
             <div>
-              <span className="font-semibold text-gray-800 text-sm">{name}</span>
-              <span className="ml-1.5 text-purple-600 font-mono text-xs">
+              <span className="font-semibold text-gray-800 dark:text-gray-100 text-sm">{name}</span>
+              <span className="ml-1.5 text-purple-600 dark:text-purple-400 font-mono text-xs">
                 {details.type}
                 {details.type === 'array' && details.items?.type ? `[${details.items.type}]` : ''}
                 {details.format ? `<${details.format}>` : ''}
-                {details._refPath && <span className="text-blue-600 ml-1">→ {details._refName || details._refPath}</span>}
-                {details._refNotFound && <span className="text-red-600 ml-1">❌ ref not found</span>}
+                {details._refPath && <span className="text-blue-600 dark:text-blue-400 ml-1">→ {details._refName || details._refPath}</span>}
+                {details._refNotFound && <span className="text-red-600 dark:text-red-400 ml-1">❌ ref not found</span>}
                 {details.const !== undefined && (
                   <span>
                     constant: <code>{details.const}</code>
@@ -259,38 +259,38 @@ const SchemaProperty = ({ name, details, isRequired, level, isListItem = false, 
                 )}
               </span>
             </div>
-            {isRequired && <span className="text-red-600 text-xs ml-3 flex-shrink-0">required</span>}
+            {isRequired && <span className="text-red-600 dark:text-red-400 text-xs ml-3 flex-shrink-0">required</span>}
           </div>
 
-          {details.description && <p className="text-gray-500 text-xs mt-0.5">{details.description}</p>}
+          {details.description && <p className="text-gray-500 dark:text-gray-300 text-xs mt-0.5">{details.description}</p>}
           {details.title && details.title !== details.description && (
-            <p className="text-gray-500 text-xs mt-0.5 italic">Title: {details.title}</p>
+            <p className="text-gray-500 dark:text-gray-300 text-xs mt-0.5 italic">Title: {details.title}</p>
           )}
 
-          <div className="text-xs text-gray-500 mt-0.5 space-y-0">
+          <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 space-y-0">
             {details.pattern && (
               <div>
-                Match pattern: <code className="bg-gray-100 px-1 rounded text-gray-800 font-thin py-0.5">{details.pattern}</code>
+                Match pattern: <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded text-gray-800 dark:text-gray-200 font-thin py-0.5">{details.pattern}</code>
               </div>
             )}
             {details.minimum !== undefined && (
               <div>
-                Minimum: <code className="bg-gray-100 px-1 rounded text-gray-800 font-thin py-0.5">{details.minimum}</code>
+                Minimum: <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded text-gray-800 dark:text-gray-200 font-thin py-0.5">{details.minimum}</code>
               </div>
             )}
             {details.maximum !== undefined && (
               <div>
-                Maximum: <code className="bg-gray-100 px-1 rounded text-gray-800 font-thin py-0.5">{details.maximum}</code>
+                Maximum: <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded text-gray-800 dark:text-gray-200 font-thin py-0.5">{details.maximum}</code>
               </div>
             )}
             {details.minLength !== undefined && (
               <div>
-                Min length: <code className="bg-gray-100 px-1 rounded text-gray-800 font-thin py-0.5">{details.minLength}</code>
+                Min length: <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded text-gray-800 dark:text-gray-200 font-thin py-0.5">{details.minLength}</code>
               </div>
             )}
             {details.maxLength !== undefined && (
               <div>
-                Max length: <code className="bg-gray-100 px-1 rounded text-gray-800 font-thin py-0.5">{details.maxLength}</code>
+                Max length: <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded text-gray-800 dark:text-gray-200 font-thin py-0.5">{details.maxLength}</code>
               </div>
             )}
             {details.enum && (
@@ -299,7 +299,7 @@ const SchemaProperty = ({ name, details, isRequired, level, isListItem = false, 
                 {details.enum.map((val: any, idx: number) => (
                   <span key={idx} className="text-xs">
                     {' '}
-                    <code className="bg-gray-100 px-1 rounded text-gray-800 font-thin py-0.5">{val}</code>
+                    <code className="bg-gray-100 dark:bg-gray-700 px-1 rounded text-gray-800 dark:text-gray-200 font-thin py-0.5">{val}</code>
                   </span>
                 ))}
               </div>
@@ -322,8 +322,8 @@ const SchemaProperty = ({ name, details, isRequired, level, isListItem = false, 
                 ))}
 
               {hasArrayItemProperties && (
-                <div className="mt-1 border-l border-dashed border-gray-400 pl-3 ml-1.5">
-                  <span className="text-xs italic text-gray-500 block mb-1">Item Details:</span>
+                <div className="mt-1 border-l border-dashed border-gray-400 dark:border-gray-500 pl-3 ml-1.5">
+                  <span className="text-xs italic text-gray-500 dark:text-gray-400 block mb-1">Item Details:</span>
                   {details.items.properties &&
                     Object.entries(details.items.properties).map(([itemPropName, itemPropDetails]: [string, any]) => (
                       <SchemaProperty
@@ -337,7 +337,7 @@ const SchemaProperty = ({ name, details, isRequired, level, isListItem = false, 
                       />
                     ))}
                   {(details.items.allOf || details.items.oneOf || details.items.$ref) && !details.items.properties && (
-                    <div className="text-xs text-gray-500 mt-1">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                       Complex array item schema detected. The properties should be processed by the parent SchemaViewer.
                     </div>
                   )}
@@ -441,7 +441,7 @@ export default function JSONSchemaViewer({
 
         // Highlight the search term
         const regex = new RegExp(`(${query})`, 'gi');
-        nameEl.innerHTML = (nameEl.textContent || '').replace(regex, '<mark class="bg-yellow-200 rounded px-0.5">$1</mark>');
+        nameEl.innerHTML = (nameEl.textContent || '').replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-700 rounded px-0.5">$1</mark>');
 
         // Expand parent containers and remove dimming from them
         let parent = container.parentElement;
@@ -686,13 +686,13 @@ export default function JSONSchemaViewer({
           <p className="text-gray-500 dark:text-gray-400 text-sm">Schema does not contain any properties.</p>
         ) : (
           <div className="text-center py-8">
-            <div className="text-gray-500 text-sm">
+            <div className="text-gray-500 dark:text-gray-400 text-sm">
               <p>
                 This array contains items of type:{' '}
-                <span className="font-mono text-blue-600">{processedSchema.items?.type || 'unknown'}</span>
+                <span className="font-mono text-blue-600 dark:text-blue-400">{processedSchema.items?.type || 'unknown'}</span>
               </p>
               {processedSchema.items?.description && (
-                <p className="text-xs mt-2 text-gray-600">{processedSchema.items.description}</p>
+                <p className="text-xs mt-2 text-gray-600 dark:text-gray-300">{processedSchema.items.description}</p>
               )}
             </div>
           </div>
