@@ -20,7 +20,7 @@ const SpecificationList: React.FC<SpecificationListProps> = ({ specifications, i
   const graphQLSpecifications = specifications.filter((spec) => spec.type === 'graphql');
 
   return (
-    <ul className="space-y-0.5 border-l border-gray-200/80 ml-[9px] pl-4">
+    <ul className="space-y-0.5 border-l border-gray-200/80 dark:border-gray-700/80 ml-[9px] pl-4">
       {asyncAPISpecifications &&
         asyncAPISpecifications.length > 0 &&
         asyncAPISpecifications.map((spec) => (
@@ -28,12 +28,12 @@ const SpecificationList: React.FC<SpecificationListProps> = ({ specifications, i
             key={`${spec.name}-asyncapi`}
             href={buildUrl(`/docs/services/${id}/${version}/asyncapi/${spec.filenameWithoutExtension}`)}
             data-active={window.location.href.includes(`docs/services/${id}/${version}/asyncapi`)}
-            className={`flex items-center px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md justify-between ${
-              window.location.href.includes(`docs/services/${id}/${version}/asyncapi`) ? 'bg-purple-100' : 'hover:bg-purple-100'
+            className={`flex items-center px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md justify-between ${
+              window.location.href.includes(`docs/services/${id}/${version}/asyncapi`) ? 'bg-purple-100 dark:bg-purple-900/50' : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
             }`}
           >
             <span className="truncate flex items-center gap-1">{spec.name}</span>
-            <span className="text-purple-600 ml-2 text-[10px] uppercase font-medium bg-gray-50 px-4 py-0.5 rounded">
+            <span className="text-purple-600 ml-2 text-[10px] uppercase font-medium bg-gray-50 dark:bg-gray-700 px-4 py-0.5 rounded">
               <img src={buildUrl('/icons/asyncapi.svg', true)} className="w-4 h-4" alt="AsyncAPI" />
             </span>
           </a>
@@ -45,14 +45,14 @@ const SpecificationList: React.FC<SpecificationListProps> = ({ specifications, i
             key={`${spec.name}-openapi`}
             href={buildUrl(`/docs/services/${id}/${version}/spec/${spec.filenameWithoutExtension}`)}
             data-active={window.location.href.includes(`docs/services/${id}/${version}/spec/${spec.filenameWithoutExtension}`)}
-            className={`items-center px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md flex justify-between ${
+            className={`items-center px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md flex justify-between ${
               window.location.href.includes(`docs/services/${id}/${version}/spec/${spec.filenameWithoutExtension}`)
-                ? 'bg-purple-100'
-                : 'hover:bg-purple-100'
+                ? 'bg-purple-100 dark:bg-purple-900/50'
+                : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
             }`}
           >
             <span className="truncate flex items-center gap-1">{spec.name}</span>
-            <span className="text-green-600 ml-2 text-[10px] uppercase font-medium bg-gray-50 px-4 py-0.5 rounded">
+            <span className="text-green-600 ml-2 text-[10px] uppercase font-medium bg-gray-50 dark:bg-gray-700 px-4 py-0.5 rounded">
               <img src={buildUrl('/icons/openapi.svg', true)} className="w-4 h-4" alt="OpenAPI" />
             </span>
           </a>
@@ -64,14 +64,14 @@ const SpecificationList: React.FC<SpecificationListProps> = ({ specifications, i
             key={`${spec.name}-openapi`}
             href={buildUrl(`/docs/services/${id}/${version}/graphql/${spec.filenameWithoutExtension}`)}
             data-active={window.location.href.includes(`docs/services/${id}/${version}/graphql/${spec.filenameWithoutExtension}`)}
-            className={`items-center px-2 py-1.5 text-xs text-gray-600 hover:bg-purple-100 rounded-md flex justify-between ${
+            className={`items-center px-2 py-1.5 text-xs text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-md flex justify-between ${
               window.location.href.includes(`docs/services/${id}/${version}/graphql/${spec.filenameWithoutExtension}`)
-                ? 'bg-purple-100'
-                : 'hover:bg-purple-100'
+                ? 'bg-purple-100 dark:bg-purple-900/50'
+                : 'hover:bg-purple-100 dark:hover:bg-purple-900/50'
             }`}
           >
             <span className="truncate flex items-center gap-1">{spec.name}</span>
-            <span className="text-green-600 ml-2 text-[10px] uppercase font-medium bg-gray-50 px-4 py-0.5 rounded">
+            <span className="text-green-600 ml-2 text-[10px] uppercase font-medium bg-gray-50 dark:bg-gray-700 px-4 py-0.5 rounded">
               <img src={buildUrl('/icons/graphql.svg', true)} className="w-4 h-4" alt="GraphQL" />
             </span>
           </a>

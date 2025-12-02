@@ -38,7 +38,7 @@ const ProtocolList = ({ title, pills, emptyMessage, color = 'gray', ...props }: 
 
                 return (
                   <li
-                    className=" has-tooltip rounded-md text-gray-600 group px-1 w-full hover:bg-gradient-to-l hover:from-purple-500 hover:to-purple-700 hover:text-white hover:font-normal  "
+                    className=" has-tooltip rounded-md text-gray-600 dark:text-gray-300 group px-1 w-full hover:bg-gradient-to-l hover:from-purple-500 hover:to-purple-700 hover:text-white hover:font-normal  "
                     key={`${item.href}-${index}`}
                   >
                     <a className={`leading-3`} href={href}>
@@ -48,7 +48,7 @@ const ProtocolList = ({ title, pills, emptyMessage, color = 'gray', ...props }: 
                           {item.label} {item.tag && <>({item.tag})</>}
                         </span>
                         {item.label.length > 24 && (
-                          <span className="tooltip rounded relative shadow-lg p-1 font-normal text-xs bg-white  text-black ml-[30px] mt-12">
+                          <span className="tooltip rounded relative shadow-lg p-1 font-normal text-xs bg-white dark:bg-gray-800 text-black dark:text-gray-200 ml-[30px] mt-12">
                             {item.label} ({item.tag})
                           </span>
                         )}

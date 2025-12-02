@@ -33,35 +33,35 @@ const MessageRow = memo(
     const channels = message.channels || [];
 
     return (
-      <tr className="group hover:bg-gray-100">
-        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 relative">
+      <tr className="group hover:bg-gray-100 dark:hover:bg-gray-700">
+        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-gray-100 sm:pl-6 relative">
           <a href={url} className="absolute inset-0 z-10" aria-label={`View details for ${message.name}`} />
           <div className="flex items-center gap-2 relative">
             <Icon className={`h-5 w-5 text-${color}-500`} />
-            <span className="group-hover:text-blue-600 break-all">{message.name}</span>
+            <span className="group-hover:text-blue-600 dark:group-hover:text-blue-400 break-all">{message.name}</span>
           </div>
         </td>
-        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 relative">
+        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400 relative">
           <a href={url} className="absolute inset-0 z-10" aria-hidden="true" />
           <span>v{message.version}</span>
         </td>
-        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 relative">
+        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400 relative">
           <a href={url} className="absolute inset-0 z-10" aria-hidden="true" />
           <span>{type}</span>
         </td>
-        <td className="px-3 py-4 text-sm text-gray-500 relative">
+        <td className="px-3 py-4 text-sm text-gray-500 dark:text-gray-400 relative">
           <a href={url} className="absolute inset-0 z-10" aria-hidden="true" />
           <span className="line-clamp-2 break-words">{message.summary || '-'}</span>
         </td>
         {showChannels && (
-          <td className="px-3 py-4 text-sm text-gray-500 relative">
+          <td className="px-3 py-4 text-sm text-gray-500 dark:text-gray-400 relative">
             <a href={url} className="absolute inset-0 z-10" aria-hidden="true" />
             <div className="flex flex-wrap gap-1">
               {channels.length > 0
                 ? channels.map((channel, index) => (
                     <span
                       key={`${channel.id}-${index}`}
-                      className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
+                      className="inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-700 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 ring-1 ring-inset ring-gray-500/10 dark:ring-gray-500/30"
                     >
                       {channel.id}
                     </span>
@@ -98,8 +98,8 @@ const FilterButton = memo(
       }}
       className={`px-3 py-1 rounded-md text-sm font-medium ${
         typeFilter === type
-          ? 'bg-black text-white border border-gray-200 hover:bg-gray-900'
-          : 'bg-white text-black border border-gray-200 hover:bg-gray-100'
+          ? 'bg-black dark:bg-white text-white dark:text-black border border-gray-200 dark:border-gray-600 hover:bg-gray-900 dark:hover:bg-gray-100'
+          : 'bg-white dark:bg-gray-700 text-black dark:text-gray-100 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600'
       }`}
     >
       {label} ({count})
@@ -210,12 +210,12 @@ const MessageTable = (props: MessageTableProps) => {
     );
 
     return (
-      <div className="flow-root bg-white border-gray-200 border  p-4 pb-2 rounded-lg text-gray-900">
+      <div className="flow-root bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 border  p-4 pb-2 rounded-lg text-gray-900 dark:text-gray-100">
         <div className="space-y-4">
           <h2 className="text-xl font-semibold">
             {title} ({searchTerm || typeFilter ? `${filteredMessages.length}/${messages.length}` : messages.length})
           </h2>
-          <span className="text-sm text-gray-700">
+          <span className="text-sm text-gray-700 dark:text-gray-300">
             Quickly find the message you need by searching for the name, type, or summary.
           </span>
 
@@ -254,7 +254,7 @@ const MessageTable = (props: MessageTableProps) => {
                 setCurrentPage(1); // Reset to first page when searching
               }}
               placeholder={`Search by name, type, or summary...`}
-              className="block w-full rounded-md border-0 py-1.5 pl-10 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-1.5 pl-10 pr-10 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
             />
             {searchTerm && (
               <button
@@ -275,35 +275,35 @@ const MessageTable = (props: MessageTableProps) => {
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full py-2 align-middle">
             <div className="max-w-full overflow-hidden">
-              <table className="min-w-full table-fixed divide-y divide-gray-300  rounded-sm bg-white ">
+              <table className="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-600  rounded-sm bg-white dark:bg-gray-800 ">
                 <thead>
                   <tr>
                     <th
                       scope="col"
-                      className={`${showChannels ? 'w-1/4' : 'w-1/3'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6`}
+                      className={`${showChannels ? 'w-1/4' : 'w-1/3'} py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6`}
                     >
                       Name
                     </th>
-                    <th scope="col" className="w-[100px] px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="w-[100px] px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">
                       Version
                     </th>
-                    <th scope="col" className="w-[100px] py-3.5 pl-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                    <th scope="col" className="w-[100px] py-3.5 pl-3.5 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">
                       Type
                     </th>
                     <th
                       scope="col"
-                      className={`${showChannels ? 'w-1/3' : 'w-1/2'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900`}
+                      className={`${showChannels ? 'w-1/3' : 'w-1/2'} px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100`}
                     >
                       Summary
                     </th>
                     {showChannels && (
-                      <th scope="col" className="w-1/4 px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                      <th scope="col" className="w-1/4 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100">
                         Channels
                       </th>
                     )}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                   {paginatedMessages.length > 0 ? (
                     paginatedMessages.map((message) => (
                       <MessageRow
@@ -315,7 +315,7 @@ const MessageTable = (props: MessageTableProps) => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan={showChannels ? 5 : 4} className="text-center py-4 text-sm text-gray-500">
+                      <td colSpan={showChannels ? 5 : 4} className="text-center py-4 text-sm text-gray-500 dark:text-gray-400">
                         No messages found
                       </td>
                     </tr>
@@ -326,26 +326,26 @@ const MessageTable = (props: MessageTableProps) => {
           </div>
         </div>
         {totalPages > 1 && (
-          <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 -mt-2">
+          <div className="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 sm:px-6 -mt-2">
             <div className="flex flex-1 justify-between sm:hidden">
               <button
                 onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium ${currentPage === 1 ? 'text-gray-300' : 'text-gray-700 hover:bg-gray-50'}`}
+                className={`relative inline-flex items-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-2 text-sm font-medium ${currentPage === 1 ? 'text-gray-300 dark:text-gray-500' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600'}`}
               >
                 Previous
               </button>
               <button
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium ${currentPage === totalPages ? 'text-gray-300' : 'text-gray-700 hover:bg-gray-50'}`}
+                className={`relative ml-3 inline-flex items-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-2 text-sm font-medium ${currentPage === totalPages ? 'text-gray-300 dark:text-gray-500' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600'}`}
               >
                 Next
               </button>
             </div>
             <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
               <div>
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
                   <span className="font-medium">{Math.min(startIndex + itemsPerPage, filteredMessages.length)}</span> of{' '}
                   <span className="font-medium">{filteredMessages.length}</span> results
@@ -356,7 +356,7 @@ const MessageTable = (props: MessageTableProps) => {
                   <button
                     onClick={() => setCurrentPage(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className={`relative inline-flex items-center rounded-l-md px-2 py-2 ${currentPage === 1 ? 'text-gray-300' : 'text-gray-400 hover:bg-gray-50'} ring-1 ring-inset ring-gray-300`}
+                    className={`relative inline-flex items-center rounded-l-md px-2 py-2 ${currentPage === 1 ? 'text-gray-300 dark:text-gray-500' : 'text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'} ring-1 ring-inset ring-gray-300 dark:ring-gray-600`}
                   >
                     <span className="sr-only">Previous</span>
                     <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -370,7 +370,7 @@ const MessageTable = (props: MessageTableProps) => {
                   <button
                     onClick={() => setCurrentPage(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    className={`relative inline-flex items-center rounded-r-md px-2 py-2 ${currentPage === totalPages ? 'text-gray-300' : 'text-gray-400 hover:bg-gray-50'} ring-1 ring-inset ring-gray-300`}
+                    className={`relative inline-flex items-center rounded-r-md px-2 py-2 ${currentPage === totalPages ? 'text-gray-300 dark:text-gray-500' : 'text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'} ring-1 ring-inset ring-gray-300 dark:ring-gray-600`}
                   >
                     <span className="sr-only">Next</span>
                     <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

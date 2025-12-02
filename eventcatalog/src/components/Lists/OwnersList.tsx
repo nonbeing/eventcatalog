@@ -28,19 +28,19 @@ const OwnersList = ({ title, owners, emptyMessage }: Props) => {
               {owners.map((item) => {
                 return (
                   <li
-                    className="has-tooltip rounded-md text-gray-600 group px-1 w-full hover:bg-gradient-to-l hover:from-purple-500 hover:to-purple-700 hover:text-white hover:font-normal  "
+                    className="has-tooltip rounded-md text-gray-600 dark:text-gray-300 group px-1 w-full hover:bg-gradient-to-l hover:from-purple-500 hover:to-purple-700 hover:text-white hover:font-normal  "
                     key={item.href}
                   >
                     <a className={`flex items-center space-x-2`} href={item.href}>
                       {item.type === 'users' && (
-                        <UserIcon className="h-4 w-4 text-gray-800 group-hover:text-white" strokeWidth={1} />
+                        <UserIcon className="h-4 w-4 text-gray-800 dark:text-gray-300 group-hover:text-white" strokeWidth={1} />
                       )}
                       {item.type === 'teams' && (
-                        <UserGroupIcon className="h-4 w-4 text-gray-800 group-hover:text-white" strokeWidth={1} />
+                        <UserGroupIcon className="h-4 w-4 text-gray-800 dark:text-gray-300 group-hover:text-white" strokeWidth={1} />
                       )}
                       <span className="font-light text-sm truncate">{item.label}</span>
                       {item.label.length > 24 && (
-                        <span className="tooltip rounded relative shadow-lg p-1 font-normal text-xs bg-white  text-black ml-[30px] mt-12">
+                        <span className="tooltip rounded relative shadow-lg p-1 font-normal text-xs bg-white dark:bg-gray-800 text-black dark:text-gray-200 ml-[30px] mt-12">
                           {item.label}
                         </span>
                       )}
@@ -57,7 +57,7 @@ const OwnersList = ({ title, owners, emptyMessage }: Props) => {
           </DisclosurePanel>
         </Disclosure>
       </div>
-      <div className="border-b border-gray-100 my-4"></div>
+      <div className="border-b border-gray-100 dark:border-gray-700 my-4"></div>
     </div>
   );
 };

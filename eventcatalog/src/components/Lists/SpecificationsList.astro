@@ -21,7 +21,7 @@ const graphQLSpecifications = specs.filter((spec) => spec.type === 'graphql');
 ---
 
 <div class="space-y-2 mb-8">
-  <span class="text-sm text-black group-data-[hover]:text-black/80 capitalize">Specifications ({numberOfSpecifications})</span>
+  <span class="text-sm text-black dark:text-gray-100 group-data-[hover]:text-black/80 dark:group-data-[hover]:text-gray-300 capitalize">Specifications ({numberOfSpecifications})</span>
   {
     openAPISpecifications.length > 0 &&
       openAPISpecifications.map((spec) => (
@@ -29,7 +29,7 @@ const graphQLSpecifications = specs.filter((spec) => spec.type === 'graphql');
           href={buildUrl(
             `/docs/${collectionItem.collection}/${collectionItem.data.id}/${collectionItem.data.version}/spec/${spec.filenameWithoutExtension}`
           )}
-          class="px-1 text-sm font-light flex items-center space-x-1 hover:underline hover:text-primary rounded-md hover:bg-gradient-to-l  hover:from-purple-500 hover:to-purple-700 hover:text-white"
+          class="px-1 text-sm font-light text-gray-600 dark:text-gray-300 flex items-center space-x-1 hover:underline hover:text-primary rounded-md hover:bg-gradient-to-l  hover:from-purple-500 hover:to-purple-700 hover:text-white"
         >
           <img src={buildUrl('/icons/openapi.svg', true)} class="h-4 w-4" />
           <span>{spec.name}</span>
@@ -43,7 +43,7 @@ const graphQLSpecifications = specs.filter((spec) => spec.type === 'graphql');
           href={buildUrl(
             `/docs/${collectionItem.collection}/${collectionItem.data.id}/${collectionItem.data.version}/asyncapi/${spec.filenameWithoutExtension}`
           )}
-          class="px-1 text-sm font-light flex items-center space-x-1 hover:underline rounded-md hover:bg-gradient-to-l  hover:from-purple-500 hover:to-purple-700 hover:text-white"
+          class="px-1 text-sm font-light text-gray-600 dark:text-gray-300 flex items-center space-x-1 hover:underline rounded-md hover:bg-gradient-to-l  hover:from-purple-500 hover:to-purple-700 hover:text-white"
         >
           <img src={buildUrl('/icons/asyncapi.svg', true)} class="h-4 w-4" />
           <span>{spec.name}</span>
@@ -57,7 +57,7 @@ const graphQLSpecifications = specs.filter((spec) => spec.type === 'graphql');
           href={buildUrl(
             `/docs/${collectionItem.collection}/${collectionItem.data.id}/${collectionItem.data.version}/graphql/${spec.filenameWithoutExtension}`
           )}
-          class="px-1 text-sm font-light flex items-center space-x-1 hover:underline rounded-md hover:bg-gradient-to-l  hover:from-purple-500 hover:to-purple-700 hover:text-white"
+          class="px-1 text-sm font-light text-gray-600 dark:text-gray-300 flex items-center space-x-1 hover:underline rounded-md hover:bg-gradient-to-l  hover:from-purple-500 hover:to-purple-700 hover:text-white"
         >
           <img src={buildUrl('/icons/graphql.svg', true)} class="h-4 w-4" />
           <span>{spec.name}</span>
