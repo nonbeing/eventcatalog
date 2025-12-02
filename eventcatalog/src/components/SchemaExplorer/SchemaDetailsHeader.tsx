@@ -66,7 +66,7 @@ export default function SchemaDetailsHeader({
           </div>
           <div className="flex items-center gap-1 mb-2">
             <span
-              className={`inline-flex items-center rounded-full bg-${color}-100 dark:bg-${color}-900/50 px-1.5 py-0.5 text-xs font-medium text-${color}-800 dark:text-${color}-200`}
+              className={`inline-flex items-center rounded-full bg-${color}-100 dark:bg-${color}-700 px-1.5 py-0.5 text-xs font-medium text-${color}-800 dark:text-white`}
             >
               {message.collection}
             </span>

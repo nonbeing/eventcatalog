@@ -142,7 +142,7 @@ const isRSSEnabled = config.rss?.enabled;
     {
       isRSSEnabled && (
         <div class="mx-auto pb-8 w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">
-          <span class="text-sm text-black font-semibold group-data-[hover]:text-black/80 capitalize">Container RSS Feed</span>
+          <span class="text-sm text-gray-900 dark:text-gray-100 font-semibold group-data-[hover]:text-gray-700 dark:group-data-[hover]:text-gray-300 capitalize">Container RSS Feed</span>
           <ul role="list" class="space-y-2 mt-2">
             <li class="has-tooltip rounded-md text-gray-600 group px-1 w-full hover:bg-gradient-to-l hover:from-purple-500 hover:to-purple-700 hover:text-white hover:font-normal  ">
               <a class={`flex items-center space-x-2`} target="_blank" href={buildUrl(`/rss/${container.collection}/rss.xml`)}>

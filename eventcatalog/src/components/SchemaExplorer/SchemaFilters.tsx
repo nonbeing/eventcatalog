@@ -130,7 +130,7 @@ export default function SchemaFilters({
             <div className="pt-2 border-t border-gray-200 dark:border-gray-600">
               <div className="flex flex-wrap items-center gap-1.5">
                 {searchQuery && (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded">
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-800/50 text-blue-800 dark:text-blue-100 rounded">
                     {searchQuery.substring(0, 15)}
                     {searchQuery.length > 15 ? '...' : ''}
                     <button onClick={() => onSearchChange('')}>
@@ -139,7 +139,7 @@ export default function SchemaFilters({
                   </span>
                 )}
                 {selectedType !== 'all' && (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded">
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-800/50 text-blue-800 dark:text-blue-100 rounded">
                     {selectedType}
                     <button onClick={() => onTypeChange('all')}>
                       <XMarkIcon className="h-3 w-3" />
@@ -147,7 +147,7 @@ export default function SchemaFilters({
                   </span>
                 )}
                 {selectedSchemaType !== 'all' && (
-                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded">
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-800/50 text-blue-800 dark:text-blue-100 rounded">
                     {getSchemaTypeLabel(selectedSchemaType)}
                     <button onClick={() => onSchemaTypeChange('all')}>
                       <XMarkIcon className="h-3 w-3" />

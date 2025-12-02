@@ -1,9 +1,37 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { XMarkIcon, ArrowsPointingOutIcon, ClipboardDocumentIcon } from '@heroicons/react/24/outline';
+import { useState, useEffect } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneLight as syntaxHighlighterStyle } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { oneLight, oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { getLanguageForHighlight } from './utils';
 import type { SchemaItem } from './types';
+
+// Hook to detect dark mode
+function useDarkMode() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+
+    checkDarkMode();
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkDarkMode();
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return isDark;
+}
 
 interface SchemaCodeModalProps {
   isOpen: boolean;
@@ -14,20 +42,23 @@ interface SchemaCodeModalProps {
 }
 
 export default function SchemaCodeModal({ isOpen, onOpenChange, message, onCopy, isCopied }: SchemaCodeModalProps) {
+  const isDark = useDarkMode();
+  const syntaxHighlighterStyle = isDark ? oneDark : oneLight;
+
   if (!message.schemaContent) return null;
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50 data-[state=open]:animate-overlayShow z-50" />
-        <Dialog.Content className="fixed inset-4 md:inset-8 rounded-lg bg-white shadow-xl focus:outline-none data-[state=open]:animate-contentShow z-[100] flex flex-col">
+        <Dialog.Content className="fixed inset-4 md:inset-8 rounded-lg bg-white dark:bg-gray-900 shadow-xl focus:outline-none data-[state=open]:animate-contentShow z-[100] flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200 flex-shrink-0">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
             <div className="flex items-center gap-3">
-              <ArrowsPointingOutIcon className="h-6 w-6 text-gray-500" />
+              <ArrowsPointingOutIcon className="h-6 w-6 text-gray-500 dark:text-gray-400" />
               <div>
-                <Dialog.Title className="text-xl font-semibold text-gray-900">{message.data.name}</Dialog.Title>
-                <Dialog.Description className="text-sm text-gray-600 mt-1">
+                <Dialog.Title className="text-xl font-semibold text-gray-900 dark:text-gray-100">{message.data.name}</Dialog.Title>
+                <Dialog.Description className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                   v{message.data.version} · {getLanguageForHighlight(message.schemaExtension).toUpperCase()}
                 </Dialog.Description>
               </div>
@@ -35,7 +66,7 @@ export default function SchemaCodeModal({ isOpen, onOpenChange, message, onCopy,
             <div className="flex items-center gap-2">
               <button
                 onClick={onCopy}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 rounded-md transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors"
                 title="Copy code"
               >
                 <ClipboardDocumentIcon className="h-4 w-4" />
@@ -44,7 +75,7 @@ export default function SchemaCodeModal({ isOpen, onOpenChange, message, onCopy,
               <Dialog.Close asChild>
                 <button
                   type="button"
-                  className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
+                  className="p-2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors"
                   aria-label="Close"
                 >
                   <XMarkIcon className="h-6 w-6" />
@@ -66,7 +97,7 @@ export default function SchemaCodeModal({ isOpen, onOpenChange, message, onCopy,
                 lineHeight: '1.6',
                 height: '100%',
               }}
-              className="bg-white border border-gray-200 rounded-lg"
+              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg"
               showLineNumbers={true}
               wrapLines={true}
               wrapLongLines={true}
@@ -76,11 +107,11 @@ export default function SchemaCodeModal({ isOpen, onOpenChange, message, onCopy,
           </div>
 
           {/* Footer */}
-          <div className="flex justify-end p-4 border-t border-gray-200 flex-shrink-0">
+          <div className="flex justify-end p-4 border-t border-gray-200 dark:border-gray-700 flex-shrink-0">
             <Dialog.Close asChild>
               <button
                 type="button"
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+                className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 transition-colors"
               >
                 Close
               </button>

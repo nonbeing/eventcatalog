@@ -63,7 +63,7 @@ export const EnvironmentDropdown: React.FC<EnvironmentDropdownProps> = ({ enviro
       <button
         type="button"
         onClick={toggleDropdown}
-        className="flex items-center space-x-1 text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 rounded-md px-3 py-2"
+        className="flex items-center space-x-1 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-900 focus:ring-purple-500 rounded-md px-3 py-2"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
@@ -86,7 +86,7 @@ export const EnvironmentDropdown: React.FC<EnvironmentDropdownProps> = ({ enviro
         </svg>
       </button>
       <div
-        className={`${isOpen ? '' : 'hidden'} absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-100 overflow-hidden z-20`}
+        className={`${isOpen ? '' : 'hidden'} absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-100 dark:border-gray-700 overflow-hidden z-20`}
       >
         {environments.map((env) => {
           const isCurrentEnv = currentEnvironment?.name === env.name;
@@ -103,21 +103,21 @@ export const EnvironmentDropdown: React.FC<EnvironmentDropdownProps> = ({ enviro
                 targetUrl.pathname = currentPath;
                 window.location.href = targetUrl.toString();
               }}
-              className={`block px-4 py-3 text-sm transition-colors border-b border-gray-50 last:border-b-0 ${
-                isCurrentEnv ? 'bg-purple-50 text-purple-700 hover:bg-purple-100' : 'text-gray-700 hover:bg-gray-50'
+              className={`block px-4 py-3 text-sm transition-colors border-b border-gray-50 dark:border-gray-700 last:border-b-0 ${
+                isCurrentEnv ? 'bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/50' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
               }`}
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <div className={`font-medium ${isCurrentEnv ? 'text-purple-700' : ''}`}>{env.name}</div>
+                  <div className={`font-medium ${isCurrentEnv ? 'text-purple-700 dark:text-purple-300' : ''}`}>{env.name}</div>
                   {env.description && (
-                    <div className={`text-xs font-light mt-1 ${isCurrentEnv ? 'text-purple-600' : 'text-gray-500'}`}>
+                    <div className={`text-xs font-light mt-1 ${isCurrentEnv ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400'}`}>
                       {env.description}
                     </div>
                   )}
                 </div>
                 {isCurrentEnv && (
-                  <svg className="w-4 h-4 text-purple-600 flex-shrink-0 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4 text-purple-600 dark:text-purple-400 flex-shrink-0 ml-2" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
                       d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"

@@ -15,7 +15,7 @@ const currentPath = Astro.url.pathname;
 ---
 
 <div class="space-y-2 pb-4">
-  <span class="text-sm text-black font-semibold group-data-[hover]:text-black/80 capitalize">
+  <span class="text-sm text-gray-900 dark:text-gray-100 font-semibold group-data-[hover]:text-gray-700 dark:group-data-[hover]:text-gray-300 capitalize">
     {title || `Versions (${collectionItem.data.versions?.length})`}
   </span>
   <ul role="list" class="space-y-2">

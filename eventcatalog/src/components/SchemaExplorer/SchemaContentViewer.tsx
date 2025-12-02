@@ -1,11 +1,41 @@
 import { ClipboardDocumentIcon, ArrowsPointingOutIcon } from '@heroicons/react/24/outline';
+import { useState, useEffect } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneLight as syntaxHighlighterStyle } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { oneLight, oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { buildUrl } from '@utils/url-builder';
 import JSONSchemaViewer from './JSONSchemaViewer';
 import AvroSchemaViewer from './AvroSchemaViewer';
 import { getLanguageForHighlight } from './utils';
 import type { SchemaItem } from './types';
+
+// Hook to detect dark mode
+function useDarkMode() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Check initial state
+    const checkDarkMode = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+
+    checkDarkMode();
+
+    // Watch for changes to the dark class
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkDarkMode();
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return isDark;
+}
 
 interface SchemaContentViewerProps {
   message: SchemaItem;
@@ -28,6 +58,9 @@ export default function SchemaContentViewer({
   showRequired = false,
   onOpenFullscreen,
 }: SchemaContentViewerProps) {
+  const isDark = useDarkMode();
+  const syntaxHighlighterStyle = isDark ? oneDark : oneLight;
+
   if (!message.schemaContent) {
     return (
       <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-400">
